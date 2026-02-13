@@ -192,7 +192,7 @@ export const investmentTerms = {
   perInvestor: 2500,
   interestRate: "25%",
   totalReturn: 3125,
-  repaymentPeriod: "12 months",
+  repaymentPeriod: "12 months (after 3-month grace)",
   monthlyRepayment: 2604.17,
   totalRepayment: 31250,
 };

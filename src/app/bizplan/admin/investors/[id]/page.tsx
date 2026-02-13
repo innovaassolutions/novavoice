@@ -7,9 +7,13 @@ import {
   Button,
   Flex,
   Heading,
+  Input,
+  InputGroup,
+  InputLeftElement,
   Text,
   VStack,
   useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
 import { supabaseBrowser } from "@/lib/supabase/browser";
 import TokenManager from "../../components/TokenManager";
@@ -29,7 +33,9 @@ export default function InvestorDetailPage() {
   const [sectionData, setSectionData] = useState<BizplanSectionAnalytic[]>([]);
   const [loading, setLoading] = useState(true);
   const [authToken, setAuthToken] = useState("");
+  const [commitmentAmount, setCommitmentAmount] = useState<string>("0");
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const toast = useToast();
 
   const getAuthToken = useCallback(async () => {
     const { data } = await supabaseBrowser.auth.getSession();
@@ -52,7 +58,9 @@ export default function InvestorDetailPage() {
     ]);
 
     if (investorRes.ok) {
-      setInvestor(await investorRes.json());
+      const inv = await investorRes.json();
+      setInvestor(inv);
+      setCommitmentAmount(String(inv.commitment_amount || 0));
     }
 
     if (analyticsRes.ok) {
@@ -83,6 +91,26 @@ export default function InvestorDetailPage() {
     }
 
     fetchData();
+  };
+
+  const handleCommitmentBlur = async () => {
+    const amount = Number(commitmentAmount) || 0;
+    if (amount === (investor?.commitment_amount || 0)) return;
+    const token = await getAuthToken();
+    const res = await fetch(`/api/bizplan/admin/investors/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ commitment_amount: amount }),
+    });
+    if (res.ok) {
+      toast({ title: "Commitment updated", status: "success", duration: 2000 });
+      fetchData();
+    } else {
+      toast({ title: "Failed to update commitment", status: "error", duration: 3000 });
+    }
   };
 
   if (loading) return null;
@@ -127,6 +155,24 @@ export default function InvestorDetailPage() {
               {investor.notes}
             </Text>
           )}
+          <Box mt={3}>
+            <Text fontSize="xs" fontWeight="600" color="#64748b" textTransform="uppercase" mb={1}>
+              Commitment Amount
+            </Text>
+            <InputGroup size="sm" maxW="180px">
+              <InputLeftElement pointerEvents="none" color="#64748b" fontSize="sm">$</InputLeftElement>
+              <Input
+                type="number"
+                value={commitmentAmount}
+                onChange={(e) => setCommitmentAmount(e.target.value)}
+                onBlur={handleCommitmentBlur}
+                onKeyDown={(e) => { if (e.key === "Enter") (e.target as HTMLInputElement).blur(); }}
+                borderColor="#e2e8f0"
+                _hover={{ borderColor: "#cbd5e1" }}
+                _focus={{ borderColor: "#F25C05", boxShadow: "0 0 0 1px #F25C05" }}
+              />
+            </InputGroup>
+          </Box>
         </Box>
         <Button
           size="sm"

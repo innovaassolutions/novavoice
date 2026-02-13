@@ -24,7 +24,7 @@ export default function InvestmentTermsSection() {
         {/* Terms Cards */}
         <SimpleGrid columns={{ base: 2, md: 4 }} spacing={5} mb={10}>
           {[
-            { label: "Investment Per Person", value: `$${investmentTerms.perInvestor.toLocaleString()}`, color: "#3b82f6" },
+            { label: "Minimum Investment", value: `$${investmentTerms.perInvestor.toLocaleString()}`, color: "#3b82f6" },
             { label: "Interest Rate", value: investmentTerms.interestRate, color: "#F25C05" },
             { label: "Total Return", value: `$${investmentTerms.totalReturn.toLocaleString()}`, color: "#22c55e" },
             { label: "Repayment Period", value: investmentTerms.repaymentPeriod, color: "#8b5cf6" },
@@ -61,7 +61,7 @@ export default function InvestmentTermsSection() {
             <Box display="flex" flexDirection="column" gap={3}>
               {[
                 { q: "Structure", a: "Fixed-rate loan with monthly repayments" },
-                { q: "Minimum investment", a: `$${investmentTerms.perInvestor.toLocaleString()} per investor` },
+                { q: "Minimum investment", a: `$${investmentTerms.perInvestor.toLocaleString()} minimum per investor` },
                 { q: "Number of investors", a: `${investmentTerms.numberOfInvestors} investors` },
                 { q: "Total raised", a: fmt(investmentTerms.totalRaise) },
                 { q: "Total repayment", a: `${fmt(investmentTerms.totalRepayment)} (${investmentTerms.interestRate} interest)` },
@@ -139,6 +139,10 @@ export default function InvestmentTermsSection() {
             $625 profit over 12 monthly payments of ~$260
           </Text>
         </MotionBox>
+
+        <Text fontSize="0.9rem" color="#64748b !important" textAlign="center" mt={6} maxW="600px" mx="auto">
+          Investors may contribute more than the minimum $2,500 allocation. Contact us to discuss larger investment amounts.
+        </Text>
       </Box>
     </Box>
   );

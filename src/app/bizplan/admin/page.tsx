@@ -6,6 +6,7 @@ import {
   Button,
   Flex,
   Heading,
+  Progress,
   SimpleGrid,
   Stat,
   StatLabel,
@@ -98,6 +99,14 @@ export default function AdminDashboard() {
     0
   );
 
+  const FUNDRAISE_GOAL = 25000;
+  const totalCommitted = investors.reduce(
+    (acc, inv) => acc + (inv.commitment_amount || 0),
+    0
+  );
+  const commitPct = Math.min((totalCommitted / FUNDRAISE_GOAL) * 100, 100);
+  const commitColor = totalCommitted >= FUNDRAISE_GOAL ? "#22c55e" : "#F25C05";
+
   return (
     <Box>
       <Flex justify="space-between" align="center" mb={8}>
@@ -119,7 +128,7 @@ export default function AdminDashboard() {
         </Button>
       </Flex>
 
-      <SimpleGrid columns={{ base: 1, md: 3 }} spacing={4} mb={8}>
+      <SimpleGrid columns={{ base: 2, md: 4 }} spacing={4} mb={4}>
         <Box bg="white" p={5} borderRadius="12px" border="1px solid #e2e8f0">
           <Stat>
             <StatLabel color="#64748b">Total Investors</StatLabel>
@@ -138,7 +147,39 @@ export default function AdminDashboard() {
             <StatNumber color="#1e293b">{loading ? "—" : totalViews}</StatNumber>
           </Stat>
         </Box>
+        <Box bg="white" p={5} borderRadius="12px" border="1px solid #e2e8f0">
+          <Stat>
+            <StatLabel color="#64748b">Committed</StatLabel>
+            <StatNumber color={commitColor}>
+              {loading ? "—" : `$${totalCommitted.toLocaleString()}`}
+            </StatNumber>
+            <Text fontSize="xs" color="#94a3b8" mt={1}>of $25,000 goal</Text>
+          </Stat>
+        </Box>
       </SimpleGrid>
+
+      {/* Fundraise Progress Bar */}
+      {!loading && (
+        <Box bg="white" p={4} borderRadius="12px" border="1px solid #e2e8f0" mb={8}>
+          <Flex justify="space-between" align="center" mb={2}>
+            <Text fontSize="sm" fontWeight="600" color="#1e293b">Fundraise Progress</Text>
+            <Text fontSize="sm" fontWeight="700" color={commitColor}>
+              {commitPct.toFixed(0)}%
+            </Text>
+          </Flex>
+          <Progress
+            value={commitPct}
+            size="lg"
+            borderRadius="full"
+            bg="#e2e8f0"
+            sx={{ "& > div": { background: commitColor, transition: "width 0.5s ease" } }}
+          />
+          <Flex justify="space-between" mt={1}>
+            <Text fontSize="xs" color="#94a3b8">$0</Text>
+            <Text fontSize="xs" color="#94a3b8">$25,000</Text>
+          </Flex>
+        </Box>
+      )}
 
       {!loading && (
         <Box>

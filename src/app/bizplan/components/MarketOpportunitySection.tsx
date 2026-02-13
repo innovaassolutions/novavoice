@@ -49,16 +49,16 @@ export default function MarketOpportunitySection() {
                   w={funnelWidths[i]}
                   maxW="400px"
                 >
-                  <Text fontSize="0.75rem" opacity={0.85} textTransform="uppercase" letterSpacing="0.08em">
+                  <Text fontSize="0.75rem" opacity={1} textTransform="uppercase" letterSpacing="0.08em">
                     {item.label}
                   </Text>
                   <Text fontSize="1.75rem" fontFamily="'Montserrat', sans-serif" fontWeight="800">
                     {item.value}
                   </Text>
-                  <Text fontSize="0.8rem" opacity={0.9}>
+                  <Text fontSize="0.8rem" opacity={1}>
                     {item.businesses}
                   </Text>
-                  <Text fontSize="0.7rem" opacity={0.75} mt={1}>
+                  <Text fontSize="0.7rem" opacity={1} mt={1}>
                     {item.description}
                   </Text>
                 </Box>

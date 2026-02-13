@@ -97,7 +97,8 @@ function computeModel(inputs: CashflowInputs, newCustPerMonth: number): MonthDat
     const ads = m <= inputs.adPaceMonths ? adMonthly : 0;
     const email = m <= inputs.adPaceMonths ? emailMonthly : 0;
     const voice = cumCustomers * voiceMid;
-    const totalCosts = commission + ads + email + fixedInfra + voice + monthlyRepay;
+    const loanRepay = m <= 3 ? 0 : monthlyRepay;
+    const totalCosts = commission + ads + email + fixedInfra + voice + loanRepay;
     const netCashflow = totalRev - totalCosts;
     cashBalance += netCashflow;
     const grossMargin = totalRev > 0 ? (totalRev - commission - voice) / totalRev : 0;
@@ -114,7 +115,7 @@ function computeModel(inputs: CashflowInputs, newCustPerMonth: number): MonthDat
       email,
       fixedInfra,
       voice,
-      loanRepay: monthlyRepay,
+      loanRepay,
       totalCosts,
       netCashflow,
       cashBalance,
@@ -220,12 +221,12 @@ export default function FinancialProjectionsSection() {
     "Cash Balance": Math.round(d.cashBalance),
   }));
 
-  // Loan schedule
+  // Loan schedule (3-month grace period, then 12 monthly payments)
   const monthlyPayment = totalRepay / 12;
   const monthlyPrincipal = inputs.totalRaise / 12;
   const loanSchedule = [];
   let balance = totalRepay;
-  for (let m = 1; m <= 12; m++) {
+  for (let m = 4; m <= 15; m++) {
     const interestPortion = monthlyPayment - monthlyPrincipal;
     const closing = balance - monthlyPayment;
     loanSchedule.push({ month: m, opening: balance, payment: monthlyPayment, interest: interestPortion, principal: monthlyPrincipal, closing: Math.max(0, closing) });
@@ -462,8 +463,11 @@ export default function FinancialProjectionsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <Text fontWeight="700" mb={4} color="#1e293b !important" fontSize="0.95rem" textAlign="center">
+          <Text fontWeight="700" mb={2} color="#1e293b !important" fontSize="0.95rem" textAlign="center">
             Loan Repayment Schedule
+          </Text>
+          <Text fontSize="0.85rem" color="#64748b !important" textAlign="center" mb={4}>
+            Repayments begin after a 3-month grace period
           </Text>
           <Box className="bp-table-wrap">
             <table className="bp-table">

@@ -4,6 +4,7 @@ export interface Investor {
   email: string;
   phone: string | null;
   notes: string | null;
+  commitment_amount: number;
   created_at: string;
   updated_at: string;
 }

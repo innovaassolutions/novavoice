@@ -43,44 +43,46 @@ export default function UseOfFundsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <ResponsiveContainer width="100%" height={320}>
-              <PieChart>
-                <Pie
-                  data={fundAllocation}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={70}
-                  outerRadius={130}
-                  paddingAngle={3}
-                  dataKey="value"
-                  labelLine={false}
-                  label={renderCustomLabel}
-                >
-                  {fundAllocation.map((entry, index) => (
-                    <Cell key={index} fill={entry.color} />
-                  ))}
-                </Pie>
-                <Tooltip
-                  formatter={(value) => [`$${Number(value).toLocaleString()}`, "Amount"]}
-                  contentStyle={{ borderRadius: 8, border: "1px solid #f1e8e0", fontSize: 13 }}
-                />
-              </PieChart>
-            </ResponsiveContainer>
-            {/* Center label */}
-            <Box
-              position="absolute"
-              top="50%"
-              left="50%"
-              transform="translate(-50%, -50%)"
-              textAlign="center"
-              pointerEvents="none"
-            >
-              <Text fontSize="1.5rem" fontFamily="'Montserrat', sans-serif" fontWeight="800" color="#1e293b !important">
-                $25K
-              </Text>
-              <Text fontSize="0.7rem" color="#64748b !important">
-                Total Raise
-              </Text>
+            <Box position="relative">
+              <ResponsiveContainer width="100%" height={320}>
+                <PieChart>
+                  <Pie
+                    data={fundAllocation}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={70}
+                    outerRadius={130}
+                    paddingAngle={3}
+                    dataKey="value"
+                    labelLine={false}
+                    label={renderCustomLabel}
+                  >
+                    {fundAllocation.map((entry, index) => (
+                      <Cell key={index} fill={entry.color} />
+                    ))}
+                  </Pie>
+                  <Tooltip
+                    formatter={(value) => [`$${Number(value).toLocaleString()}`, "Amount"]}
+                    contentStyle={{ borderRadius: 8, border: "1px solid #f1e8e0", fontSize: 13 }}
+                  />
+                </PieChart>
+              </ResponsiveContainer>
+              {/* Center label */}
+              <Box
+                position="absolute"
+                top="50%"
+                left="50%"
+                transform="translate(-50%, -50%)"
+                textAlign="center"
+                pointerEvents="none"
+              >
+                <Text fontSize="1.5rem" fontFamily="'Montserrat', sans-serif" fontWeight="800" color="#1e293b !important">
+                  $25K
+                </Text>
+                <Text fontSize="0.7rem" color="#64748b !important">
+                  Total Raise
+                </Text>
+              </Box>
             </Box>
           </MotionBox>
 

@@ -27,13 +27,14 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
 
   const { id } = await params;
   const body = await req.json();
-  const { name, email, phone, notes } = body;
+  const { name, email, phone, notes, commitment_amount } = body;
 
-  const updates: Record<string, string | null> = {};
+  const updates: Record<string, string | number | null> = {};
   if (name !== undefined) updates.name = name;
   if (email !== undefined) updates.email = email;
   if (phone !== undefined) updates.phone = phone || null;
   if (notes !== undefined) updates.notes = notes || null;
+  if (commitment_amount !== undefined) updates.commitment_amount = Number(commitment_amount) || 0;
 
   const { data, error } = await supabaseAdmin
     .from("investors")
