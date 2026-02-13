@@ -15,7 +15,16 @@ import UseOfFundsSection from "./components/UseOfFundsSection";
 import InvestmentTermsSection from "./components/InvestmentTermsSection";
 import CTASection from "./components/CTASection";
 
-export default function BizPlanClient() {
+import { useSectionAnalytics } from "./hooks/useSectionAnalytics";
+
+interface BizPlanClientProps {
+  viewId: string;
+  investorId: string;
+}
+
+export default function BizPlanClient({ viewId, investorId }: BizPlanClientProps) {
+  useSectionAnalytics(viewId, investorId);
+
   return (
     <Box className="bizplan-wrapper">
       <StickyNav />
