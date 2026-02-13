@@ -242,5 +242,6 @@ export const sections = [
   { id: "financials", label: "Financials" },
   { id: "use-of-funds", label: "Use of Funds" },
   { id: "terms", label: "Terms" },
+  { id: "team", label: "Team" },
   { id: "cta", label: "Invest" },
 ];
