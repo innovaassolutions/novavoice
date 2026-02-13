@@ -5,10 +5,12 @@ import { Box } from "@chakra-ui/react";
 import { supabaseBrowser } from "@/lib/supabase/browser";
 import AdminLogin from "./components/AdminLogin";
 import AdminNav from "./components/AdminNav";
+import SetPasswordForm from "./components/SetPasswordForm";
 import type { Session } from "@supabase/supabase-js";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
+  const [needsPassword, setNeedsPassword] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -17,8 +19,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       setLoading(false);
     });
 
-    const { data: { subscription } } = supabaseBrowser.auth.onAuthStateChange((_event, session) => {
+    const { data: { subscription } } = supabaseBrowser.auth.onAuthStateChange((event, session) => {
       setSession(session);
+      if (event === "PASSWORD_RECOVERY") {
+        setNeedsPassword(true);
+      }
     });
 
     return () => subscription.unsubscribe();
@@ -28,6 +33,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   if (!session) {
     return <AdminLogin onLogin={() => {}} />;
+  }
+
+  if (needsPassword) {
+    return (
+      <SetPasswordForm
+        onComplete={() => setNeedsPassword(false)}
+      />
+    );
   }
 
   return (
