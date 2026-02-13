@@ -520,7 +520,7 @@ export default function NovaVoicePage() {
                 <Box flex={1} textAlign="center" p={4} bg={problemBg} borderRadius="lg">
                   <Text fontSize="sm" color={mutedText} mb={1} fontWeight={600}>One-Time Setup</Text>
                   <Text fontSize="3xl" fontWeight={900} color={headingColor} fontFamily="Montserrat, Arial, sans-serif">
-                    $1,000
+                    $5,000
                   </Text>
                   <Text fontSize="xs" color={mutedText}>custom agent build</Text>
                 </Box>
