@@ -4,6 +4,7 @@ import { Box, Heading, Text, SimpleGrid, Flex, Icon } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { FiAlertCircle } from "react-icons/fi";
 import { investmentTerms, riskFactors } from "../data/bizplanData";
+import FundraiseProgress from "./FundraiseProgress";
 
 const MotionBox = motion(Box);
 
@@ -101,6 +102,9 @@ export default function InvestmentTermsSection() {
             </Box>
           </MotionBox>
         </SimpleGrid>
+
+        {/* Fundraise Progress */}
+        <FundraiseProgress />
 
         {/* Per-Investor Summary */}
         <MotionBox
