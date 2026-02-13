@@ -15,7 +15,7 @@ import { tamSamSom, marketGrowthData, industryTargets } from "../data/bizplanDat
 
 const MotionBox = motion(Box);
 
-const funnelColors = ["#F25C05", "#f59e0b", "#22c55e"];
+const funnelColors = ["#F25C05", "#d97706", "#16a34a"];
 const funnelWidths = ["100%", "75%", "45%"];
 
 export default function MarketOpportunitySection() {
