@@ -1,0 +1,334 @@
+/* ─── Bizplan Light Theme ────────────────────────────────────────────────── */
+.bizplan-wrapper {
+  --bp-bg: #ffffff;
+  --bp-bg-alt: #FFF8F3;
+  --bp-accent: #F25C05;
+  --bp-accent-hover: #d94e04;
+  --bp-amber: #f59e0b;
+  --bp-green: #22c55e;
+  --bp-blue: #3b82f6;
+  --bp-purple: #8b5cf6;
+  --bp-text: #1e293b;
+  --bp-text-muted: #64748b;
+  --bp-card-bg: #ffffff;
+  --bp-card-border: #f1e8e0;
+  --bp-card-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --bp-section-radius: 16px;
+
+  background: var(--bp-bg);
+  color: var(--bp-text);
+  min-height: 100vh;
+}
+
+/* Force light text colors regardless of Chakra color mode */
+.bizplan-wrapper h1,
+.bizplan-wrapper h2,
+.bizplan-wrapper h3,
+.bizplan-wrapper h4,
+.bizplan-wrapper h5,
+.bizplan-wrapper h6 {
+  color: var(--bp-text) !important;
+}
+
+.bizplan-wrapper p {
+  color: var(--bp-text-muted) !important;
+}
+
+/* ─── Section Alternating Backgrounds ─────────────────────────────────── */
+.bp-section {
+  padding: 5rem 1.5rem;
+  scroll-margin-top: 80px;
+}
+
+.bp-section-alt {
+  background: var(--bp-bg-alt);
+}
+
+.bp-section-white {
+  background: var(--bp-bg);
+}
+
+/* ─── Card Styles ─────────────────────────────────────────────────────── */
+.bp-card {
+  background: var(--bp-card-bg);
+  border: 1px solid var(--bp-card-border);
+  border-radius: 12px;
+  box-shadow: var(--bp-card-shadow);
+  padding: 1.5rem;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.bp-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+
+.bp-card-accent {
+  border-left: 4px solid var(--bp-accent);
+}
+
+/* ─── Stat Card ───────────────────────────────────────────────────────── */
+.bp-stat-card {
+  background: var(--bp-card-bg);
+  border: 1px solid var(--bp-card-border);
+  border-radius: 12px;
+  box-shadow: var(--bp-card-shadow);
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.bp-stat-value {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--bp-accent);
+  line-height: 1.2;
+}
+
+.bp-stat-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--bp-text);
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.bp-stat-sub {
+  font-size: 0.8rem;
+  color: var(--bp-text-muted);
+  margin-top: 0.25rem;
+}
+
+/* ─── Sticky Nav ──────────────────────────────────────────────────────── */
+.bp-sticky-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--bp-card-border);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.bp-sticky-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.bp-nav-link {
+  display: inline-block;
+  padding: 0.75rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--bp-text-muted);
+  text-decoration: none;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.bp-nav-link:hover {
+  color: var(--bp-accent);
+}
+
+.bp-nav-link.active {
+  color: var(--bp-accent);
+  border-bottom-color: var(--bp-accent);
+}
+
+/* ─── Hero ────────────────────────────────────────────────────────────── */
+.bp-hero {
+  position: relative;
+  padding: 6rem 1.5rem;
+  background: linear-gradient(135deg, #FFF8F3 0%, #FFE8D4 50%, #FFDCC0 100%);
+  overflow: hidden;
+  text-align: center;
+}
+
+.bp-hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(242,92,5,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+/* ─── Funnel Styles ───────────────────────────────────────────────────── */
+.bp-funnel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bp-funnel-item {
+  text-align: center;
+  padding: 1.25rem 2rem;
+  border-radius: 12px;
+  color: white;
+  font-weight: 700;
+  transition: transform 0.2s;
+}
+
+.bp-funnel-item:hover {
+  transform: scale(1.02);
+}
+
+/* ─── Table Styles ────────────────────────────────────────────────────── */
+.bp-table-wrap {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid var(--bp-card-border);
+}
+
+.bp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.bp-table th {
+  background: var(--bp-bg-alt);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--bp-text-muted);
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 2px solid var(--bp-card-border);
+  white-space: nowrap;
+}
+
+.bp-table td {
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid var(--bp-card-border);
+  color: var(--bp-text);
+}
+
+.bp-table tr:last-child td {
+  border-bottom: none;
+}
+
+.bp-table tr:hover td {
+  background: var(--bp-bg-alt);
+}
+
+/* ─── CTA Section ─────────────────────────────────────────────────────── */
+.bp-cta {
+  background: linear-gradient(135deg, #F25C05 0%, #d94e04 100%);
+  color: white;
+  text-align: center;
+  padding: 5rem 1.5rem;
+}
+
+.bp-cta h2,
+.bp-cta h3,
+.bp-cta p {
+  color: white !important;
+}
+
+/* ─── Chart Container ─────────────────────────────────────────────────── */
+.bp-chart-container {
+  width: 100%;
+  background: var(--bp-card-bg);
+  border: 1px solid var(--bp-card-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: var(--bp-card-shadow);
+}
+
+/* ─── Cashflow Model ──────────────────────────────────────────────────── */
+.bp-cashflow-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+  min-width: 900px;
+}
+
+.bp-cashflow-table th {
+  font-family: monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--bp-text-muted);
+  padding: 0.6rem 0.5rem;
+  text-align: right;
+  border-bottom: 2px solid var(--bp-card-border);
+  white-space: nowrap;
+  background: var(--bp-bg-alt);
+}
+
+.bp-cashflow-table th:first-child {
+  text-align: left;
+  min-width: 160px;
+}
+
+.bp-cashflow-table td {
+  font-family: monospace;
+  font-size: 0.78rem;
+  padding: 0.45rem 0.5rem;
+  text-align: right;
+  border-bottom: 1px solid var(--bp-card-border);
+  white-space: nowrap;
+}
+
+.bp-cashflow-table td:first-child {
+  font-family: 'Inter', sans-serif;
+  text-align: left;
+  color: var(--bp-text-muted);
+}
+
+.bp-cashflow-section-row td {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 0.72rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--bp-text-muted) !important;
+  padding-top: 1rem !important;
+}
+
+.bp-cashflow-total-row td {
+  font-weight: 700 !important;
+  color: var(--bp-text) !important;
+  border-top: 2px solid var(--bp-card-border);
+  border-bottom: 2px solid var(--bp-card-border);
+}
+
+.bp-cashflow-highlight-positive td {
+  font-weight: 700 !important;
+  color: var(--bp-green) !important;
+  background: rgba(34, 197, 94, 0.06);
+}
+
+.bp-cashflow-highlight-negative td {
+  font-weight: 700 !important;
+  color: #ef4444 !important;
+  background: rgba(239, 68, 68, 0.06);
+}
+
+/* ─── Responsive ──────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .bp-section {
+    padding: 3rem 1rem;
+  }
+
+  .bp-hero {
+    padding: 4rem 1rem;
+  }
+
+  .bp-stat-value {
+    font-size: 1.5rem;
+  }
+
+  .bp-nav-link {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.75rem;
+  }
+}

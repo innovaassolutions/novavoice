@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fundraise & Cashflow Model</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0c0f14;
+  --surface: #151921;
+  --surface-2: #1c2230;
+  --border: #2a3142;
+  --text: #e4e8ef;
+  --text-muted: #8892a4;
+  --accent: #6c8cff;
+  --accent-dim: rgba(108,140,255,0.12);
+  --green: #34d399;
+  --green-dim: rgba(52,211,153,0.12);
+  --orange: #fb923c;
+  --orange-dim: rgba(251,146,60,0.12);
+  --red: #f87171;
+  --red-dim: rgba(248,113,113,0.12);
+  --purple: #a78bfa;
+  --purple-dim: rgba(167,139,250,0.12);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.container { max-width: 1400px; margin: 0 auto; }
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--purple), var(--green));
+}
+.header h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+.header p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+}
+
+/* Section */
+.section {
+  margin-bottom: 2.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem 1.75rem;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
+}
+.section-header:hover { background: var(--surface-2); }
+.section-header h2 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.section-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.badge-blue { background: var(--accent-dim); color: var(--accent); }
+.badge-green { background: var(--green-dim); color: var(--green); }
+.badge-orange { background: var(--orange-dim); color: var(--orange); }
+.badge-purple { background: var(--purple-dim); color: var(--purple); }
+
+.section-body { padding: 1.5rem 1.75rem; }
+
+/* Assumptions Grid */
+.assumptions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+.assumption-group h3 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.assumption-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.45rem 0;
+}
+.assumption-row label {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+.assumption-row .value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--accent);
+}
+.assumption-row input {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--accent);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.3rem 0.6rem;
+  width: 110px;
+  text-align: right;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.assumption-row input:focus { border-color: var(--accent); }
+
+/* Summary Cards */
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+.summary-card {
+  padding: 1.25rem 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.summary-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+}
+.summary-card.blue::before { background: var(--accent); }
+.summary-card.green::before { background: var(--green); }
+.summary-card.orange::before { background: var(--orange); }
+.summary-card.purple::before { background: var(--purple); }
+.summary-card .card-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+.summary-card .card-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.summary-card.blue .card-value { color: var(--accent); }
+.summary-card.green .card-value { color: var(--green); }
+.summary-card.orange .card-value { color: var(--orange); }
+.summary-card.purple .card-value { color: var(--purple); }
+.summary-card .card-sub {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0;
+  padding: 0 1.75rem;
+  padding-top: 1rem;
+}
+.tab {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  background: var(--surface);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.tab.active { background: var(--surface-2); color: var(--text); border-color: var(--accent); border-bottom: 1px solid var(--surface-2); }
+.tab:hover:not(.active) { color: var(--text); }
+
+/* Table */
+.table-wrap {
+  overflow-x: auto;
+  padding: 0 1.75rem 1.75rem;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  min-width: 1100px;
+}
+th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  padding: 0.75rem 0.6rem;
+  text-align: right;
+  border-bottom: 2px solid var(--border);
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+}
+th:first-child { text-align: left; min-width: 200px; }
+th:last-child { color: var(--accent); }
+
+td {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  padding: 0.55rem 0.6rem;
+  text-align: right;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+td:first-child {
+  font-family: 'DM Sans', sans-serif;
+  text-align: left;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+td:last-child { font-weight: 600; }
+tr.section-row td {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  padding-top: 1.2rem;
+  border-bottom: 1px solid var(--border);
+  background: transparent;
+}
+tr.total-row td {
+  font-weight: 700;
+  color: var(--text);
+  border-top: 2px solid var(--border);
+  border-bottom: 2px solid var(--border);
+}
+tr.highlight-row td {
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.75rem 0.6rem;
+}
+tr.highlight-row.positive td { color: var(--green); background: var(--green-dim); }
+tr.highlight-row.negative td { color: var(--red); background: var(--red-dim); }
+
+/* Loan table */
+.loan-table { min-width: 600px; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  body { padding: 1rem; }
+  .header { padding: 2rem 1.25rem; }
+  .header h1 { font-size: 1.5rem; }
+  .section-body { padding: 1rem; }
+  .tabs { padding: 0.75rem 1rem 0; }
+  .table-wrap { padding: 0 1rem 1rem; }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { height: 6px; }
+::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* Print */
+@media print {
+  body { background: #fff; color: #000; padding: 0.5rem; }
+  .section { border: 1px solid #ccc; break-inside: avoid; }
+  .summary-card { border: 1px solid #ccc; }
+  th, td { font-size: 0.7rem; padding: 0.3rem; }
+  .header::before, .summary-card::before { display: none; }
+  .summary-card .card-value, .summary-card .card-label { color: #000 !important; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>Fundraise & 12-Month Cashflow Model</h1>
+  <p>$25,000 raise · 10 contributors · 12-month repayment at 25% interest</p>
+</div>
+
+<!-- Summary Cards -->
+<div class="summary-cards" id="summaryCards"></div>
+
+<!-- Assumptions -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection('assumptions')">
+    <span class="section-badge badge-blue">INPUTS</span>
+    <h2>Assumptions</h2>
+    <span style="margin-left:auto;color:var(--text-muted);font-size:0.85rem" id="assumptions-toggle">▼</span>
+  </div>
+  <div class="section-body" id="assumptions">
+    <div class="assumptions-grid">
+      <div class="assumption-group">
+        <h3>Fundraise</h3>
+        <div class="assumption-row"><label>Total raise</label><input type="number" id="totalRaise" value="25000" onchange="recalc()"></div>
+        <div class="assumption-row"><label>Contributors</label><input type="number" id="numContributors" value="10" onchange="recalc()"></div>
+        <div class="assumption-row"><label>Per person</label><span class="value" id="perPerson">$2,500</span></div>
+        <div class="assumption-row"><label>Interest rate</label><input type="number" id="interestRate" value="25" step="1" onchange="recalc()"> <span style="color:var(--text-muted);font-size:0.8rem">%</span></div>
+        <div class="assumption-row"><label>Total repayment</label><span class="value" id="totalRepayment">$31,250</span></div>
+        <div class="assumption-row"><label>Monthly repayment</label><span class="value" id="monthlyRepayment">$2,604</span></div>
+      </div>
+      <div class="assumption-group">
+        <h3>Revenue & Pricing</h3>
+        <div class="assumption-row"><label>Setup fee</label><input type="number" id="setupFee" value="5000" onchange="recalc()"></div>
+        <div class="assumption-row"><label>Monthly subscription</label><input type="number" id="monthlySub" value="639" onchange="recalc()"></div>
+        <div class="assumption-row"><label>Sales commission</label><input type="number" id="commissionRate" value="25" step="1" onchange="recalc()"> <span style="color:var(--text-muted);font-size:0.8rem">%</span></div>
+        <div class="assumption-row"><label>New customers/mo (conservative)</label><input type="number" id="custConservative" value="5" onchange="recalc()"></div>
+        <div class="assumption-row"><label>New customers/mo (optimistic)</label><input type="number" id="custOptimistic" value="8" onchange="recalc()"></div>
+      </div>
+      <div class="assumption-group">
+        <h3>Budget Allocation (from raise)</h3>
+        <div class="assumption-row"><label>Facebook ads</label><input type="number" id="adBudget" value="10000" onchange="recalc()"></div>
+        <div class="assumption-row"><label>Email outreach</label><input type="number" id="emailBudget" value="5000" onchange="recalc()"></div>
+        <div class="assumption-row"><label>Bills / runway</label><input type="number" id="billsBudget" value="10000" onchange="recalc()"></div>
+        <div class="assumption-row"><label>Ad spend pace (months)</label><input type="number" id="adPaceMonths" value="6" min="1" max="12" onchange="recalc()"></div>
+      </div>
+      <div class="assumption-group">
+        <h3>Monthly Costs</h3>
+        <div class="assumption-row"><label>Supabase</label><input type="number" id="costSupabase" value="50" onchange="recalc()"></div>
+        <div class="assumption-row"><label>Vercel</label><input type="number" id="costVercel" value="20" onchange="recalc()"></div>
+        <div class="assumption-row"><label>Claude Max</label><input type="number" id="costClaude" value="200" onchange="recalc()"></div>
+        <div class="assumption-row"><label>Total fixed infra</label><span class="value" id="totalInfra">$270</span></div>
+        <div class="assumption-row"><label>Voice cost/customer/mo (low)</label><input type="number" id="voiceLow" value="7" onchange="recalc()"></div>
+        <div class="assumption-row"><label>Voice cost/customer/mo (high)</label><input type="number" id="voiceHigh" value="28" onchange="recalc()"></div>
+        <div class="assumption-row"><label>Voice cost used (mid)</label><span class="value" id="voiceMid">$17.50</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Cashflow Projections -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge badge-green">PROJECTION</span>
+    <h2>12-Month Cashflow</h2>
+  </div>
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('conservative')">Conservative (<span id="tabConLabel">5</span>/mo)</div>
+    <div class="tab" onclick="switchTab('optimistic')">Optimistic (<span id="tabOptLabel">8</span>/mo)</div>
+  </div>
+  <div class="table-wrap">
+    <table id="cashflowTable"></table>
+  </div>
+</div>
+
+<!-- Loan Repayment -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection('loanBody')">
+    <span class="section-badge badge-purple">REPAYMENT</span>
+    <h2>Loan Repayment Schedule</h2>
+    <span style="margin-left:auto;color:var(--text-muted);font-size:0.85rem" id="loanBody-toggle">▼</span>
+  </div>
+  <div class="section-body" id="loanBody">
+    <div class="table-wrap" style="padding:0">
+      <table class="loan-table" id="loanTable"></table>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const fmt = n => {
+  if (Math.abs(n) < 0.5) return '-';
+  const neg = n < 0;
+  const s = '$' + Math.abs(Math.round(n)).toLocaleString('en-US');
+  return neg ? '(' + s + ')' : s;
+};
+const pct = n => (n * 100).toFixed(1) + '%';
+
+let activeTab = 'conservative';
+
+function getInputs() {
+  return {
+    totalRaise: +$('totalRaise').value,
+    numContributors: +$('numContributors').value,
+    interestRate: +$('interestRate').value / 100,
+    setupFee: +$('setupFee').value,
+    monthlySub: +$('monthlySub').value,
+    commissionRate: +$('commissionRate').value / 100,
+    custConservative: +$('custConservative').value,
+    custOptimistic: +$('custOptimistic').value,
+    adBudget: +$('adBudget').value,
+    emailBudget: +$('emailBudget').value,
+    billsBudget: +$('billsBudget').value,
+    adPaceMonths: +$('adPaceMonths').value,
+    costSupabase: +$('costSupabase').value,
+    costVercel: +$('costVercel').value,
+    costClaude: +$('costClaude').value,
+    voiceLow: +$('voiceLow').value,
+    voiceHigh: +$('voiceHigh').value,
+  };
+}
+
+function computeModel(inputs, newCustPerMonth) {
+  const totalRepay = inputs.totalRaise * (1 + inputs.interestRate);
+  const monthlyRepay = totalRepay / 12;
+  const adMonthly = inputs.adBudget / inputs.adPaceMonths;
+  const emailMonthly = inputs.emailBudget / inputs.adPaceMonths;
+  const fixedInfra = inputs.costSupabase + inputs.costVercel + inputs.costClaude;
+  const voiceMid = (inputs.voiceLow + inputs.voiceHigh) / 2;
+
+  const months = [];
+  let cumCustomers = 0;
+  let cashBalance = inputs.totalRaise;
+
+  for (let m = 1; m <= 12; m++) {
+    cumCustomers += newCustPerMonth;
+    const setupRev = newCustPerMonth * inputs.setupFee;
+    const subRev = cumCustomers * inputs.monthlySub;
+    const totalRev = setupRev + subRev;
+    const commission = totalRev * inputs.commissionRate;
+    const ads = m <= inputs.adPaceMonths ? adMonthly : 0;
+    const email = m <= inputs.adPaceMonths ? emailMonthly : 0;
+    const voice = cumCustomers * voiceMid;
+    const totalCosts = commission + ads + email + fixedInfra + voice + monthlyRepay;
+    const netCashflow = totalRev - totalCosts;
+    cashBalance += netCashflow;
+    const grossMargin = totalRev > 0 ? (totalRev - commission - voice) / totalRev : 0;
+
+    months.push({
+      month: m, newCust: newCustPerMonth, cumCust: cumCustomers,
+      setupRev, subRev, totalRev,
+      commission, ads, email, fixedInfra, voice, loanRepay: monthlyRepay,
+      totalCosts, netCashflow, cashBalance, grossMargin
+    });
+  }
+  return months;
+}
+
+function renderCashflow(data) {
+  const t = $('cashflowTable');
+  let html = '<thead><tr><th></th>';
+  for (let m = 1; m <= 12; m++) html += `<th>M${m}</th>`;
+  html += '<th>Total</th></tr></thead><tbody>';
+
+  const rows = [
+    { section: 'Customers' },
+    { label: 'New customers', key: 'newCust', fmt: 'num' },
+    { label: 'Cumulative customers', key: 'cumCust', fmt: 'num' },
+    { section: 'Revenue' },
+    { label: 'Setup fees', key: 'setupRev', fmt: 'usd' },
+    { label: 'Subscriptions', key: 'subRev', fmt: 'usd' },
+    { label: 'Total Revenue', key: 'totalRev', fmt: 'usd', total: true },
+    { section: 'Costs' },
+    { label: 'Sales commission (25%)', key: 'commission', fmt: 'usd' },
+    { label: 'Facebook ads', key: 'ads', fmt: 'usd' },
+    { label: 'Email outreach', key: 'email', fmt: 'usd' },
+    { label: 'Fixed infrastructure', key: 'fixedInfra', fmt: 'usd' },
+    { label: 'Voice agent costs', key: 'voice', fmt: 'usd' },
+    { label: 'Loan repayment', key: 'loanRepay', fmt: 'usd' },
+    { label: 'Total Costs', key: 'totalCosts', fmt: 'usd', total: true },
+    { section: 'Net Cashflow' },
+    { label: 'Monthly net cashflow', key: 'netCashflow', fmt: 'usd', highlight: true },
+    { label: 'Cash balance', key: 'cashBalance', fmt: 'usd', highlight: true },
+    { section: 'Key Metrics' },
+    { label: 'Gross margin', key: 'grossMargin', fmt: 'pct' },
+  ];
+
+  rows.forEach(r => {
+    if (r.section) {
+      html += `<tr class="section-row"><td colspan="14">${r.section}</td></tr>`;
+      return;
+    }
+    const isHighlight = r.highlight;
+    const isTotal = r.total;
+    let cls = '';
+    if (isHighlight) {
+      const lastVal = data[11][r.key];
+      cls = lastVal >= 0 ? 'highlight-row positive' : 'highlight-row negative';
+    } else if (isTotal) {
+      cls = 'total-row';
+    }
+    html += `<tr class="${cls}"><td>${r.label}</td>`;
+    let sum = 0;
+    data.forEach(d => {
+      const v = d[r.key];
+      sum += (r.key === 'cashBalance' || r.key === 'cumCust' || r.key === 'grossMargin') ? 0 : v;
+      html += `<td>${r.fmt === 'pct' ? pct(v) : r.fmt === 'num' ? v : fmt(v)}</td>`;
+    });
+    // Total column
+    if (r.key === 'cashBalance' || r.key === 'cumCust') {
+      const last = data[11][r.key];
+      html += `<td>${r.fmt === 'num' ? last : fmt(last)}</td>`;
+    } else if (r.key === 'grossMargin') {
+      const totalRev = data.reduce((s, d) => s + d.totalRev, 0);
+      const totalComm = data.reduce((s, d) => s + d.commission, 0);
+      const totalVoice = data.reduce((s, d) => s + d.voice, 0);
+      html += `<td>${pct(totalRev > 0 ? (totalRev - totalComm - totalVoice) / totalRev : 0)}</td>`;
+    } else {
+      html += `<td>${r.fmt === 'num' ? sum : fmt(sum)}</td>`;
+    }
+    html += '</tr>';
+  });
+
+  html += '</tbody>';
+  t.innerHTML = html;
+}
+
+function renderLoan(inputs) {
+  const totalRepay = inputs.totalRaise * (1 + inputs.interestRate);
+  const monthlyPayment = totalRepay / 12;
+  const monthlyPrincipal = inputs.totalRaise / 12;
+  let balance = totalRepay;
+
+  let html = '<thead><tr><th style="text-align:center">Month</th><th>Opening Balance</th><th>Payment</th><th>Interest Portion</th><th>Principal Portion</th><th>Closing Balance</th></tr></thead><tbody>';
+  let totalInterest = 0;
+  for (let m = 1; m <= 12; m++) {
+    const interestPortion = monthlyPayment - monthlyPrincipal;
+    totalInterest += interestPortion;
+    const closing = balance - monthlyPayment;
+    html += `<tr>
+      <td style="text-align:center;color:var(--text)">${m}</td>
+      <td>${fmt(balance)}</td>
+      <td>${fmt(monthlyPayment)}</td>
+      <td style="color:var(--orange)">${fmt(interestPortion)}</td>
+      <td>${fmt(monthlyPrincipal)}</td>
+      <td>${fmt(Math.max(0, closing))}</td>
+    </tr>`;
+    balance = closing;
+  }
+  html += `<tr class="total-row">
+    <td style="color:var(--text)">Total</td>
+    <td></td>
+    <td>${fmt(totalRepay)}</td>
+    <td style="color:var(--orange)">${fmt(totalInterest)}</td>
+    <td>${fmt(inputs.totalRaise)}</td>
+    <td>${fmt(0)}</td>
+  </tr></tbody>`;
+  $('loanTable').innerHTML = html;
+}
+
+function renderSummary(consData, optData, inputs) {
+  const totalRepay = inputs.totalRaise * (1 + inputs.interestRate);
+  const consRevTotal = consData.reduce((s, d) => s + d.totalRev, 0);
+  const optRevTotal = optData.reduce((s, d) => s + d.totalRev, 0);
+  const data = activeTab === 'conservative' ? consData : optData;
+  const revTotal = data.reduce((s, d) => s + d.totalRev, 0);
+
+  $('summaryCards').innerHTML = `
+    <div class="summary-card blue">
+      <div class="card-label">Total Raise</div>
+      <div class="card-value">${fmt(inputs.totalRaise)}</div>
+      <div class="card-sub">Repay ${fmt(totalRepay)} over 12mo</div>
+    </div>
+    <div class="summary-card green">
+      <div class="card-label">12-Month Revenue</div>
+      <div class="card-value">${fmt(revTotal)}</div>
+      <div class="card-sub">${activeTab === 'conservative' ? 'Conservative' : 'Optimistic'} scenario</div>
+    </div>
+    <div class="summary-card orange">
+      <div class="card-label">End Cash Balance</div>
+      <div class="card-value">${fmt(data[11].cashBalance)}</div>
+      <div class="card-sub">After all costs & repayment</div>
+    </div>
+    <div class="summary-card purple">
+      <div class="card-label">Gross Margin</div>
+      <div class="card-value">${pct(data.reduce((s,d)=>s+d.totalRev,0) > 0 ? (data.reduce((s,d)=>s+d.totalRev,0) - data.reduce((s,d)=>s+d.commission,0) - data.reduce((s,d)=>s+d.voice,0)) / data.reduce((s,d)=>s+d.totalRev,0) : 0)}</div>
+      <div class="card-sub">Revenue − commission − voice</div>
+    </div>
+  `;
+}
+
+function switchTab(tab) {
+  activeTab = tab;
+  document.querySelectorAll('.tab').forEach((t, i) => {
+    t.classList.toggle('active', (i === 0 && tab === 'conservative') || (i === 1 && tab === 'optimistic'));
+  });
+  recalc();
+}
+
+function toggleSection(id) {
+  const el = $(id);
+  const toggle = $(id + '-toggle');
+  if (el.style.display === 'none') {
+    el.style.display = '';
+    toggle.textContent = '▼';
+  } else {
+    el.style.display = 'none';
+    toggle.textContent = '▶';
+  }
+}
+
+function recalc() {
+  const inputs = getInputs();
+  const totalRepay = inputs.totalRaise * (1 + inputs.interestRate);
+  const fixedInfra = inputs.costSupabase + inputs.costVercel + inputs.costClaude;
+  const voiceMid = (inputs.voiceLow + inputs.voiceHigh) / 2;
+
+  // Update derived displays
+  $('perPerson').textContent = fmt(inputs.totalRaise / inputs.numContributors);
+  $('totalRepayment').textContent = fmt(totalRepay);
+  $('monthlyRepayment').textContent = fmt(totalRepay / 12);
+  $('totalInfra').textContent = fmt(fixedInfra);
+  $('voiceMid').textContent = '$' + voiceMid.toFixed(2);
+  $('tabConLabel').textContent = inputs.custConservative;
+  $('tabOptLabel').textContent = inputs.custOptimistic;
+
+  const consData = computeModel(inputs, inputs.custConservative);
+  const optData = computeModel(inputs, inputs.custOptimistic);
+
+  const data = activeTab === 'conservative' ? consData : optData;
+  renderCashflow(data);
+  renderLoan(inputs);
+  renderSummary(consData, optData, inputs);
+}
+
+recalc();
+</script>
+</body>
+</html>
