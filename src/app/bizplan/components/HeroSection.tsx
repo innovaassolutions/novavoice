@@ -2,6 +2,7 @@
 
 import { Box, Heading, Text, Badge } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import FundraiseProgress from "./FundraiseProgress";
 
 const MotionBox = motion(Box);
 
@@ -69,6 +70,10 @@ export default function HeroSection() {
               </Text>
             </Box>
           ))}
+        </Box>
+
+        <Box mt={8}>
+          <FundraiseProgress />
         </Box>
       </MotionBox>
     </Box>
