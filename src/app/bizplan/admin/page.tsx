@@ -181,6 +181,61 @@ export default function AdminDashboard() {
         </Box>
       )}
 
+      {/* Recent Commitments Alert */}
+      {!loading && investors.filter((inv) => inv.commitment_amount > 0).length > 0 && (
+        <Box bg="white" p={5} borderRadius="12px" border="1px solid #e2e8f0" mb={8}>
+          <Flex align="center" gap={2} mb={4}>
+            <Box w={3} h={3} borderRadius="full" bg="#22c55e" />
+            <Text fontWeight="700" color="#1e293b" fontSize="md">
+              Investment Interest
+            </Text>
+          </Flex>
+          <Box display="flex" flexDirection="column" gap={2}>
+            {investors
+              .filter((inv) => inv.commitment_amount > 0)
+              .sort((a, b) => {
+                const aTime = a.committed_at ? new Date(a.committed_at).getTime() : 0;
+                const bTime = b.committed_at ? new Date(b.committed_at).getTime() : 0;
+                return bTime - aTime;
+              })
+              .map((inv) => (
+                <Flex
+                  key={inv.id}
+                  justify="space-between"
+                  align="center"
+                  py={2}
+                  px={3}
+                  bg="#f0fdf4"
+                  borderRadius="8px"
+                  border="1px solid #bbf7d0"
+                  cursor="pointer"
+                  _hover={{ bg: "#dcfce7" }}
+                  onClick={() => window.location.href = `/bizplan/admin/investors/${inv.id}`}
+                >
+                  <Box>
+                    <Text fontWeight="600" fontSize="sm" color="#1e293b">
+                      {inv.name}
+                    </Text>
+                    <Text fontSize="xs" color="#64748b">
+                      {inv.committed_at
+                        ? new Date(inv.committed_at).toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                            hour: "numeric",
+                            minute: "2-digit",
+                          })
+                        : "Date unknown"}
+                    </Text>
+                  </Box>
+                  <Text fontWeight="800" fontFamily="'Montserrat', sans-serif" fontSize="lg" color="#166534">
+                    ${inv.commitment_amount.toLocaleString()}
+                  </Text>
+                </Flex>
+              ))}
+          </Box>
+        </Box>
+      )}
+
       {!loading && (
         <Box>
           <Text fontWeight="700" color="#1e293b" mb={4} fontSize="lg">
