@@ -8,7 +8,7 @@ export async function GET(req: NextRequest) {
 
   const { data, error } = await supabaseAdmin
     .from("investors")
-    .select("*, investor_tokens(id, token, is_active, created_at, expires_at, last_used_at)")
+    .select("*, investor_tokens(id, token, is_active, created_at, expires_at, last_used_at), bizplan_views(id)")
     .order("created_at", { ascending: false });
 
   if (error) {

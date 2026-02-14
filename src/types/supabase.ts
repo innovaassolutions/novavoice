@@ -6,6 +6,7 @@ export interface Investor {
   notes: string | null;
   commitment_amount: number;
   committed_at: string | null;
+  token_shared: boolean;
   created_at: string;
   updated_at: string;
 }

@@ -22,6 +22,7 @@ import type { Investor, InvestorToken } from "@/types/supabase";
 
 interface InvestorWithTokens extends Investor {
   investor_tokens: InvestorToken[];
+  bizplan_views: { id: string }[];
 }
 
 export default function AdminDashboard() {
@@ -91,6 +92,19 @@ export default function AdminDashboard() {
     await fetch(`/api/bizplan/admin/investors/${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
+    });
+    fetchData();
+  };
+
+  const handleToggleShared = async (id: string, value: boolean) => {
+    const token = await getAuthToken();
+    await fetch(`/api/bizplan/admin/investors/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ token_shared: value }),
     });
     fetchData();
   };
@@ -242,7 +256,7 @@ export default function AdminDashboard() {
           <Text fontWeight="700" color="#1e293b" mb={4} fontSize="lg">
             Investors
           </Text>
-          <InvestorTable investors={investors} onDelete={handleDelete} />
+          <InvestorTable investors={investors} onDelete={handleDelete} onToggleShared={handleToggleShared} />
         </Box>
       )}
 
