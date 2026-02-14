@@ -40,6 +40,17 @@ export interface BizplanSectionAnalytic {
   created_at: string;
 }
 
+export interface ResearchPaper {
+  id: string;
+  title: string;
+  description: string | null;
+  file_name: string;
+  file_path: string;
+  file_size: number;
+  mime_type: string;
+  created_at: string;
+}
+
 export interface Database {
   public: {
     Tables: {
@@ -62,6 +73,11 @@ export interface Database {
         Row: BizplanSectionAnalytic;
         Insert: Omit<BizplanSectionAnalytic, "id" | "created_at">;
         Update: Partial<Omit<BizplanSectionAnalytic, "id" | "created_at">>;
+      };
+      bizplan_research_papers: {
+        Row: ResearchPaper;
+        Insert: Omit<ResearchPaper, "id" | "created_at">;
+        Update: Partial<Omit<ResearchPaper, "id" | "created_at">>;
       };
     };
   };

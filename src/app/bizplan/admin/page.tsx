@@ -17,6 +17,7 @@ import {
 import { supabaseBrowser } from "@/lib/supabase/browser";
 import InvestorTable from "./components/InvestorTable";
 import InvestorForm from "./components/InvestorForm";
+import ResearchPapersManager from "./components/ResearchPapersManager";
 import type { Investor, InvestorToken } from "@/types/supabase";
 
 interface InvestorWithTokens extends Investor {
@@ -246,6 +247,11 @@ export default function AdminDashboard() {
       )}
 
       <InvestorForm isOpen={isOpen} onClose={onClose} onSave={handleCreate} />
+
+      {/* Research Papers Management */}
+      <Box mt={8}>
+        <ResearchPapersManager />
+      </Box>
     </Box>
   );
 }

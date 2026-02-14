@@ -243,5 +243,6 @@ export const sections = [
   { id: "use-of-funds", label: "Use of Funds" },
   { id: "terms", label: "Terms" },
   { id: "team", label: "Team" },
+  { id: "research", label: "Research" },
   { id: "cta", label: "Invest" },
 ];

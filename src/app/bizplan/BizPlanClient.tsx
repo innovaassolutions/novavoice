@@ -14,6 +14,7 @@ import FinancialProjectionsSection from "./components/FinancialProjectionsSectio
 import UseOfFundsSection from "./components/UseOfFundsSection";
 import InvestmentTermsSection from "./components/InvestmentTermsSection";
 import TeamSection from "./components/TeamSection";
+import ResearchPapersSection from "./components/ResearchPapersSection";
 import InvestmentCommitForm from "./components/InvestmentCommitForm";
 import CTASection from "./components/CTASection";
 
@@ -41,6 +42,7 @@ export default function BizPlanClient({ viewId, investorId }: BizPlanClientProps
       <UseOfFundsSection />
       <InvestmentTermsSection />
       <TeamSection />
+      <ResearchPapersSection />
       <InvestmentCommitForm investorId={investorId} />
       <CTASection />
     </Box>
