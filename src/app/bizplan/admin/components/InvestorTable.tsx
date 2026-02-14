@@ -64,16 +64,14 @@ export default function InvestorTable({ investors, onDelete, onToggleShared }: I
                 _hover={{ bg: "#f8fafc" }}
                 onClick={() => router.push(`/bizplan/admin/investors/${inv.id}`)}
               >
-                <Td borderColor="#e2e8f0">
+                <Td borderColor="#e2e8f0" onClick={(e) => e.stopPropagation()}>
                   <Switch
                     size="sm"
                     colorScheme="orange"
                     isChecked={inv.token_shared}
                     onChange={(e) => {
-                      e.stopPropagation();
                       onToggleShared(inv.id, e.target.checked);
                     }}
-                    onClick={(e) => e.stopPropagation()}
                   />
                 </Td>
                 <Td borderColor="#e2e8f0">
