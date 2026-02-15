@@ -122,6 +122,13 @@ export default function CompetitiveLandscapeSection() {
           </Box>
         </MotionBox>
 
+        <Text fontSize="0.85rem" color="#64748b !important" mb={6} textAlign="center" maxW="750px" mx="auto">
+          The answering service market has organized into three distinct tiers. NovaVoice occupies the gap between
+          self-service AI tools (affordable but require DIY configuration) and premium managed services (professional
+          setup but with annual contracts and higher total cost). The $5,000 setup fee covers custom API integration
+          work that would cost $5,000-$15,000 from a freelance developer.
+        </Text>
+
         {/* Color Legend */}
         <Flex gap={4} mb={6} justify="center" flexWrap="wrap">
           {Object.entries(typeColors).map(([label, color]) => (
@@ -161,6 +168,12 @@ export default function CompetitiveLandscapeSection() {
             <CostChart data={costComparison500} title="500 Calls/Month" />
           </MotionBox>
         </SimpleGrid>
+
+        <Text fontSize="0.85rem" color="#64748b !important" mb={6} textAlign="center" maxW="750px" mx="auto">
+          These charts model actual monthly cost at realistic call volumes, not headline prices. Many providers
+          advertising low entry prices charge significantly more at moderate volume due to per-minute overages and
+          feature add-ons. NovaVoice&apos;s flat $639/mo includes unlimited calls.
+        </Text>
 
         {/* 24-Month TCO */}
         <MotionBox
@@ -207,6 +220,12 @@ export default function CompetitiveLandscapeSection() {
             Includes setup fees. NovaVoice: $5,000 setup + $639/mo × 24 = $20,336
           </Text>
         </MotionBox>
+
+        <Text fontSize="0.85rem" color="#64748b !important" mt={6} textAlign="center" maxW="750px" mx="auto">
+          Over two years, NovaVoice&apos;s total cost ($20,336 including setup) is competitive with Smith.ai&apos;s Done For You
+          mid-tier ($24,000) while offering month-to-month flexibility vs. mandatory annual billing. Self-service
+          options like Rosie cost less but require the business owner to handle all configuration and integration work.
+        </Text>
       </Box>
     </Box>
   );

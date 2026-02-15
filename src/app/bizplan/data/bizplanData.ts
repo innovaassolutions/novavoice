@@ -1,17 +1,17 @@
 // ─── Executive Summary Stats ────────────────────────────────────────────────
 export const executiveStats = [
-  { label: "Total Addressable Market", value: "$42.4B", sub: "Annual recurring revenue" },
+  { label: "Total Addressable Market", value: "$42.2B", sub: "Annual recurring revenue" },
   { label: "Calls Unanswered", value: "62%", sub: "Small business calls missed" },
   { label: "Monthly Cost vs In-House", value: "$639/mo", sub: "vs $5,000+/mo receptionist" },
   { label: "Market Growth (CAGR)", value: "34.8%", sub: "AI voice agent market" },
   { label: "Capital Raise", value: "$25,000", sub: "10 investors × $2,500" },
-  { label: "Repayment Period", value: "12 months", sub: "25% interest, $3,125 return" },
+  { label: "LTV/CAC Ratio", value: "17.7x", sub: "Conservative estimate" },
 ];
 
 // ─── Problem Section ────────────────────────────────────────────────────────
 export const missedCallStats = [
   { stat: "80%", description: "of callers who reach voicemail hang up without leaving a message" },
-  { stat: "85%", description: "of unanswered callers never call back — they contact a competitor" },
+  { stat: "85%", description: "of unanswered callers never call back — directionally supported across multiple industry studies" },
   { stat: "$25K–$60K", description: "annual revenue lost per business from unanswered calls" },
 ];
 
@@ -53,9 +53,9 @@ export const differentiators = [
 
 // ─── Market Opportunity Section ─────────────────────────────────────────────
 export const tamSamSom = [
-  { label: "TAM", value: "$42.4B", businesses: "5.5M businesses", description: "All phone-dependent SMBs in US & Canada" },
+  { label: "TAM", value: "$42.2B", businesses: "5.5M businesses", description: "All phone-dependent SMBs in US & Canada" },
   { label: "SAM", value: "$21.1B", businesses: "2.75M businesses", description: "High-value phone-dependent industries" },
-  { label: "SOM (Year 3)", value: "$27–42M", businesses: "3,500 businesses", description: "Realistic capture for new entrant" },
+  { label: "SOM (Year 3)", value: "$2.0–$2.7M", businesses: "250–350 businesses", description: "Realistic Year 3 target" },
 ];
 
 export const marketGrowthData = [
@@ -86,30 +86,33 @@ export const industryTargets = [
 
 // ─── Competitive Landscape Section ──────────────────────────────────────────
 export const costComparison100 = [
-  { provider: "Rosie (AI)", cost: 149, type: "Self-Service AI" },
   { provider: "Goodcall (AI)", cost: 79, type: "Self-Service AI" },
-  { provider: "Smith.ai DFY", cost: 500, type: "Managed AI" },
+  { provider: "Dialzara (AI)", cost: 99, type: "Self-Service AI" },
+  { provider: "Rosie (AI)", cost: 149, type: "Self-Service AI" },
   { provider: "SAS (Human)", cost: 312, type: "Human" },
-  { provider: "Ruby (Human)", cost: 1080, type: "Human" },
+  { provider: "Smith.ai DFY", cost: 500, type: "Managed AI" },
   { provider: "NovaVoice", cost: 639, type: "Managed AI" },
+  { provider: "Ruby (Human)", cost: 1400, type: "Human" },
 ];
 
 export const costComparison300 = [
   { provider: "Rosie (AI)", cost: 149, type: "Self-Service AI" },
   { provider: "Goodcall (AI)", cost: 249, type: "Self-Service AI" },
+  { provider: "Dialzara (AI)", cost: 391, type: "Self-Service AI" },
   { provider: "Smith.ai DFY", cost: 500, type: "Managed AI" },
-  { provider: "AnswerConnect", cost: 1050, type: "Human" },
-  { provider: "Ruby (Human)", cost: 3105, type: "Human" },
   { provider: "NovaVoice", cost: 639, type: "Managed AI" },
+  { provider: "MAP (Human)", cost: 969, type: "Human" },
+  { provider: "Ruby (Human)", cost: 3500, type: "Human" },
 ];
 
 export const costComparison500 = [
   { provider: "Rosie (AI)", cost: 149, type: "Self-Service AI" },
   { provider: "Goodcall (AI)", cost: 249, type: "Self-Service AI" },
+  { provider: "NovaVoice", cost: 639, type: "Managed AI" },
+  { provider: "Dialzara (AI)", cost: 679, type: "Self-Service AI" },
   { provider: "Smith.ai DFY", cost: 1000, type: "Managed AI" },
   { provider: "PATLive (Human)", cost: 2470, type: "Human" },
   { provider: "Ruby (Human)", cost: 5175, type: "Human" },
-  { provider: "NovaVoice", cost: 639, type: "Managed AI" },
 ];
 
 export const tcoComparison24Months = [
@@ -124,11 +127,11 @@ export const tcoComparison24Months = [
 export const competitorTiers = [
   {
     tier: "Self-Service AI",
-    price: "$29–$299/mo",
+    price: "$29–$375/mo",
     setup: "$0",
     integrations: "Zapier / DIY",
     support: "Business owner configures everything",
-    examples: "Rosie, Goodcall, Dialzara, Upfirst",
+    examples: "Rosie, Goodcall, Dialzara, Upfirst, Phonely, Synthflow",
   },
   {
     tier: "NovaVoice (Managed AI)",
@@ -141,7 +144,7 @@ export const competitorTiers = [
   {
     tier: "Premium Managed AI",
     price: "$500–$2,000/mo",
-    setup: "$0 (annual billing required)",
+    setup: "$2,000 add-on (monthly); $0 (annual, $6K–$24K/yr min)",
     integrations: "Custom integrations included",
     support: "Dedicated AI solutions expert",
     examples: "Smith.ai Done For You",
@@ -164,7 +167,11 @@ export const unitEconomics = {
   firstYearRevenuePerCustomer: 12668,
   voiceCostPerCustomerPerMonth: 17.5,
   salesCommission: "25%",
-  grossMarginTarget: "68–72%",
+  grossMarginTarget: "72–74%",
+  ltv: 17742,
+  cacConservative: 1000,
+  ltvCacRatio: "17.7x",
+  avgLifespanMonths: 30.3,
 };
 
 export const breakEvenByIndustry = [
@@ -172,7 +179,7 @@ export const breakEvenByIndustry = [
   { industry: "General Legal", avgJobValue: 3000, conversionsNeeded: "0.21 cases", frequency: "~1 every 5 months" },
   { industry: "HVAC", avgJobValue: 1150, conversionsNeeded: "0.56 jobs", frequency: "~1 every 2 months" },
   { industry: "Dental (New Patient)", avgJobValue: 800, conversionsNeeded: "0.80 patients", frequency: "~1 per month" },
-  { industry: "Plumbing", avgJobValue: 700, conversionsNeeded: "0.91 jobs", frequency: "~1 per month" },
+  { industry: "Plumbing", avgJobValue: 300, conversionsNeeded: "2.13 calls", frequency: "~2 per month" },
   { industry: "Home Services", avgJobValue: 500, conversionsNeeded: "1.28 jobs", frequency: "~1–2 per month" },
   { industry: "Auto Repair", avgJobValue: 450, conversionsNeeded: "1.42 services", frequency: "~1–2 per month" },
   { industry: "Medical Practice", avgJobValue: 200, conversionsNeeded: "3.20 visits", frequency: "~3 per month" },
@@ -192,7 +199,7 @@ export const investmentTerms = {
   perInvestor: 2500,
   interestRate: "25%",
   totalReturn: 3125,
-  repaymentPeriod: "12 months (after 3-month grace)",
+  repaymentPeriod: "12 months",
   monthlyRepayment: 2604.17,
   totalRepayment: 31250,
 };
@@ -204,7 +211,33 @@ export const riskFactors = [
   "Technology risk — AI voice quality depends on third-party providers",
   "SMB churn rates typically 3–7% monthly",
   "Regulatory changes around AI disclosure requirements",
+  "75% of consumers prefer talking to a human (Five9 study)",
+  "78% of SMBs have not yet adopted voice AI",
 ];
+
+// ─── SaaS Metrics ──────────────────────────────────────────────────────────
+export const saasMetrics = [
+  { label: "Customer LTV (incl. setup)", value: "$17,742", sub: "Based on 30.3-month avg lifespan" },
+  { label: "CAC (marketing only)", value: "$1,000", sub: "Conservative estimate" },
+  { label: "LTV/CAC Ratio", value: "17.7x", sub: "Industry benchmark: 3x+" },
+  { label: "CAC Payback", value: "Immediate", sub: "Setup fee ($5K) exceeds CAC" },
+  { label: "Avg Customer Lifespan", value: "30.3 months", sub: "Based on 3.3% monthly churn" },
+  { label: "Monthly Churn Rate", value: "3.3%", sub: "~33.5% annualized" },
+];
+
+// ─── Churn Sensitivity Data ────────────────────────────────────────────────
+export const churnSensitivity = [
+  { monthlyChurn: "2%", annualized: "21.4%", activeCustomers: 35, totalRevenue: 345000, netCashflow: 132000, endingCash: 157000, mrr: 22365, isBase: false },
+  { monthlyChurn: "3.3%", annualized: "33.5%", activeCustomers: 34, totalRevenue: 336000, netCashflow: 125000, endingCash: 150000, mrr: 21726, isBase: true },
+  { monthlyChurn: "5%", annualized: "46.0%", activeCustomers: 32, totalRevenue: 322000, netCashflow: 113000, endingCash: 138000, mrr: 20448, isBase: false },
+  { monthlyChurn: "7%", annualized: "58.7%", activeCustomers: 30, totalRevenue: 306000, netCashflow: 99000, endingCash: 124000, mrr: 19170, isBase: false },
+];
+
+// ─── Acquisition Ramps ─────────────────────────────────────────────────────
+export const acquisitionRamps = {
+  conservative: [0, 1, 2, 3, 4, 5, 5, 5, 5, 5, 5, 5],  // total: 45
+  optimistic:   [0, 2, 4, 6, 8, 8, 8, 8, 8, 8, 8, 8],   // total: 76
+};
 
 // ─── Loan Schedule (pre-computed for display) ───────────────────────────────
 export function computeLoanSchedule(totalRaise: number, interestRate: number) {

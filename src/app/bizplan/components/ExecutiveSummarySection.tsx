@@ -32,6 +32,12 @@ export default function ExecutiveSummarySection() {
             </MotionBox>
           ))}
         </SimpleGrid>
+
+        <Text fontSize="0.85rem" color="#64748b !important" mt={8} textAlign="center" maxW="700px" mx="auto">
+          These figures represent the opportunity at a glance. The $42.2B addressable market encompasses 5.5 million
+          phone-dependent small businesses across the US and Canada. Current market penetration is low — only 22% of
+          small businesses have adopted AI-powered voice tools, representing a largely greenfield opportunity.
+        </Text>
       </Box>
     </Box>
   );

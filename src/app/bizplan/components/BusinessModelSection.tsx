@@ -18,7 +18,7 @@ export default function BusinessModelSection() {
         </Text>
 
         {/* Revenue Model */}
-        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8} mb={10}>
+        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8} mb={4}>
           <MotionBox
             className="bp-card"
             initial={{ opacity: 0, x: -20 }}
@@ -74,6 +74,8 @@ export default function BusinessModelSection() {
                 { label: "Sales Commission", value: unitEconomics.salesCommission, color: "#64748b" },
                 { label: "Gross Margin Target", value: unitEconomics.grossMarginTarget, color: "#22c55e" },
                 { label: "Fixed Infrastructure", value: "$270/mo", color: "#64748b" },
+                { label: "Customer LTV", value: `$${unitEconomics.ltv.toLocaleString()}`, color: "#22c55e" },
+                { label: "LTV/CAC Ratio", value: unitEconomics.ltvCacRatio, color: "#22c55e" },
               ].map((item) => (
                 <Flex key={item.label} justify="space-between" align="center" borderBottom="1px solid #f1e8e0" pb={3}>
                   <Text fontSize="0.9rem" color="#1e293b !important">
@@ -92,12 +94,19 @@ export default function BusinessModelSection() {
               </Text>
               <Text fontSize="0.8rem" color="#166534 !important">
                 82–88% cheaper than an in-house receptionist ($4,833–$7,208/mo fully loaded), with 24/7
-                coverage and zero turnover risk. Break-even for most businesses within 1–3 additional
-                converted calls per month.
+                coverage and zero turnover risk. With a customer lifetime value of $17,742 and a conservative
+                CAC of $1,000, the LTV/CAC ratio of 17.7x far exceeds the 3x benchmark for healthy SaaS businesses.
+                The $5,000 setup fee provides immediate CAC payback and creates meaningful switching costs.
               </Text>
             </Box>
           </MotionBox>
         </SimpleGrid>
+
+        <Text fontSize="0.85rem" color="#64748b !important" mb={10} textAlign="center" maxW="750px" mx="auto">
+          The two-stream revenue model combines a one-time setup fee (professional services) with recurring monthly
+          subscription. The setup fee covers custom API integration work — connecting the AI agent to the client&apos;s
+          specific scheduling, CRM, and knowledge base systems. This work creates genuine switching costs that reduce churn.
+        </Text>
 
         {/* Break-Even Table */}
         <MotionBox
@@ -131,6 +140,13 @@ export default function BusinessModelSection() {
               </tbody>
             </table>
           </Box>
+
+          <Text fontSize="0.85rem" color="#64748b !important" mt={4} textAlign="center" maxW="700px" mx="auto">
+            Break-even analysis assumes the service captures calls that would otherwise go unanswered. At $639/mo,
+            most service businesses need to convert only 1-3 additional calls per month to fully recover the cost.
+            For any business missing 5+ calls per week with job values above $300, the service typically pays for
+            itself within the first or second month.
+          </Text>
         </MotionBox>
       </Box>
     </Box>

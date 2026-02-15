@@ -105,9 +105,20 @@ export default function ProblemSection() {
                 &ldquo;A 411 Locals study of 85 businesses across 58 industries found that only 37.8% of
                 inbound calls were actually answered by a live person.&rdquo;
               </Text>
+              <Text fontSize="0.75rem" color="#92400e !important" mt={2}>
+                Corroborated by Clio 2024 Legal Trends Report and Housecall Pro data.
+              </Text>
             </MotionBox>
           </Box>
         </SimpleGrid>
+
+        <Text fontSize="0.85rem" color="#64748b !important" mt={6} textAlign="center" maxW="750px" mx="auto">
+          This chart shows the percentage of inbound calls that go unanswered across key industries. Data from industry
+          studies including Clio&apos;s 2024 Legal Trends Report (law firms answer only 40% of calls) and home services call
+          tracking data. The average small business misses roughly 6 out of every 10 calls. Together, these statistics
+          paint a clear picture: most callers who reach voicemail don&apos;t leave a message, and the majority never call back.
+          Each missed call represents potential revenue walking to a competitor.
+        </Text>
       </Box>
     </Box>
   );

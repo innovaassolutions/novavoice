@@ -59,7 +59,7 @@ export default function HeroSection() {
           {[
             { label: "$25,000 raise", sub: "10 investors" },
             { label: "25% return", sub: "12 months" },
-            { label: "$42.4B market", sub: "34.8% CAGR" },
+            { label: "$42.2B market", sub: "34.8% CAGR" },
           ].map((item) => (
             <Box key={item.label} textAlign="center">
               <Text fontWeight="800" fontSize="1.1rem" color="#1e293b !important" fontFamily="'Montserrat', sans-serif">

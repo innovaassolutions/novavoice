@@ -26,7 +26,7 @@ export default function MarketOpportunitySection() {
           Market Opportunity
         </Heading>
         <Text textAlign="center" mb={10} fontSize="1.05rem" maxW="650px" mx="auto">
-          A $42.4 billion addressable market powered by the AI voice revolution.
+          A $42.2 billion addressable market powered by the AI voice revolution.
         </Text>
 
         <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8} mb={10}>
@@ -107,6 +107,17 @@ export default function MarketOpportunitySection() {
           </MotionBox>
         </SimpleGrid>
 
+        <Text fontSize="0.85rem" color="#64748b !important" mb={4} textAlign="center" maxW="750px" mx="auto">
+          The funnel narrows from all phone-dependent small businesses (TAM) to high-value industries where missed
+          calls carry significant revenue impact (SAM), to the realistic customer base achievable within three years
+          of operation (SOM). Market sizing uses US Census Bureau SUSB 2022 data and ISED Canada 2025 statistics.
+        </Text>
+
+        <Text fontSize="0.85rem" color="#64748b !important" mb={10} textAlign="center" maxW="750px" mx="auto">
+          The AI voice agent market is projected to grow at 34.8% CAGR from $2.4B (2024) to $47.5B (2034), driven
+          by $2.1B in VC funding in 2024 alone. Source: Market.us. Note: decade-out projections carry inherent uncertainty.
+        </Text>
+
         {/* Industry Targets Table */}
         <MotionBox
           initial={{ opacity: 0, y: 20 }}
@@ -152,6 +163,12 @@ export default function MarketOpportunitySection() {
               </tbody>
             </table>
           </Box>
+
+          <Text fontSize="0.85rem" color="#64748b !important" mt={4} textAlign="center" maxW="700px" mx="auto">
+            These industries represent the initial go-to-market focus. Firm counts are from US Census SUSB data by
+            NAICS code. Businesses with 5-49 employees represent the sweet spot: large enough to afford the service,
+            small enough to lack dedicated phone staff.
+          </Text>
         </MotionBox>
       </Box>
     </Box>

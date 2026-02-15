@@ -143,6 +143,12 @@ export default function InvestmentTermsSection() {
         <Text fontSize="0.9rem" color="#64748b !important" textAlign="center" mt={6} maxW="600px" mx="auto">
           Investors may contribute more than the minimum $2,500 allocation. Contact us to discuss larger investment amounts.
         </Text>
+
+        <Text fontSize="0.85rem" color="#64748b !important" textAlign="center" mt={6} maxW="700px" mx="auto">
+          These risks are standard for early-stage ventures. The custom API integrations create meaningful switching
+          costs that partially mitigate churn risk, and the $5,000 setup fee provides revenue protection even if a
+          customer churns early.
+        </Text>
       </Box>
     </Box>
   );

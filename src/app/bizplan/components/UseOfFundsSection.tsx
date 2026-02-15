@@ -108,15 +108,22 @@ export default function UseOfFundsSection() {
                 </Flex>
                 <Text fontSize="0.85rem">
                   {item.name === "Facebook Ads"
-                    ? "Targeted ads reaching small business owners in high-value industries (home services, legal, healthcare). Paced over 6 months for sustained lead generation."
+                    ? "Targeted ads reaching small business owners in high-value industries (home services, legal, healthcare). Total 12-month budget: $20,000 ($1,667/mo). The $25K raise provides initial runway; revenue covers ongoing spend from month 3-4."
                     : item.name === "Email Outreach"
-                    ? "Cold email campaigns to qualified prospects using verified business contact databases. Expected to generate 15–25% of total leads."
-                    : "Covers infrastructure costs (Supabase, Vercel, Claude Max) and operational expenses during the ramp-up period before revenue covers costs."}
+                    ? "Cold email campaigns to qualified prospects using verified business contact databases. Total 12-month budget: $10,000 ($833/mo). Expected to generate 15–25% of total leads."
+                    : "Covers fixed monthly costs ($5,270/mo including founder salary, Supabase, Vercel, Claude Max) during the pre-revenue ramp. Business reaches cash-positive at month 3-4."}
                 </Text>
               </MotionBox>
             ))}
           </Box>
         </SimpleGrid>
+
+        <Text fontSize="0.85rem" color="#64748b !important" mt={8} textAlign="center" maxW="750px" mx="auto">
+          The $25,000 raise is allocated to maximize customer acquisition runway. Marketing spend ($30,000 total
+          including revenue-funded months) is paced evenly over 12 months at $1,667/mo for Facebook ads and $833/mo
+          for email outreach. The bills/runway reserve covers infrastructure costs and operational expenses during
+          the ramp-up period before revenue exceeds costs (approximately months 1-3).
+        </Text>
       </Box>
     </Box>
   );
