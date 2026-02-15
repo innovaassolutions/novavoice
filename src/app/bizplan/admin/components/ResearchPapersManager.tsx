@@ -158,6 +158,7 @@ export default function ResearchPapersManager() {
               onChange={(e) => setTitle(e.target.value)}
               placeholder="e.g. Market Analysis Report"
               borderColor="#e2e8f0"
+              color="#1e293b"
               _focus={{ borderColor: "#F25C05" }}
             />
           </FormControl>
@@ -171,6 +172,7 @@ export default function ResearchPapersManager() {
               ref={fileRef}
               size="sm"
               borderColor="#e2e8f0"
+              color="#1e293b"
               pt="3px"
             />
           </FormControl>
@@ -186,6 +188,7 @@ export default function ResearchPapersManager() {
             placeholder="Brief description of this paper..."
             rows={2}
             borderColor="#e2e8f0"
+            color="#1e293b"
             _focus={{ borderColor: "#F25C05" }}
           />
         </FormControl>
