@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Box, Button, Flex, Heading, Input, InputGroup, InputLeftElement, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Input, InputGroup, InputLeftElement, SimpleGrid, Text } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 
 const MotionBox = motion(Box);
@@ -49,7 +49,7 @@ export default function InvestmentCommitForm({ investorId }: InvestmentCommitFor
   return (
     <Box id="commit" className="bp-section bp-section-alt">
       <MotionBox
-        maxW="550px"
+        maxW="800px"
         mx="auto"
         textAlign="center"
         initial={{ opacity: 0, y: 20 }}
@@ -82,71 +82,117 @@ export default function InvestmentCommitForm({ investorId }: InvestmentCommitFor
               Let us know how much you&apos;d like to invest and we&apos;ll follow up with you directly.
             </Text>
 
-            <Box className="bp-card" maxW="400px" mx="auto">
-              <Text
-                fontSize="0.72rem"
-                fontWeight="700"
-                textTransform="uppercase"
-                letterSpacing="0.08em"
-                color="#64748b !important"
-                mb={3}
-                textAlign="left"
-              >
-                Investment Amount
-              </Text>
-              <InputGroup size="lg" mb={3}>
-                <InputLeftElement
-                  pointerEvents="none"
-                  color="#64748b"
-                  fontSize="1.1rem"
+            <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6} maxW="700px" mx="auto">
+              {/* Investment Amount Card */}
+              <Box className="bp-card">
+                <Text
+                  fontSize="0.72rem"
                   fontWeight="700"
+                  textTransform="uppercase"
+                  letterSpacing="0.08em"
+                  color="#64748b !important"
+                  mb={3}
+                  textAlign="left"
                 >
-                  $
-                </InputLeftElement>
-                <Input
-                  type="number"
-                  placeholder="2,500"
-                  value={amount}
-                  onChange={(e) => { setAmount(e.target.value); setError(""); }}
-                  onKeyDown={(e) => { if (e.key === "Enter") handleSubmit(); }}
-                  borderColor="#e2e8f0"
-                  _hover={{ borderColor: "#cbd5e1" }}
-                  _focus={{ borderColor: "#F25C05", boxShadow: "0 0 0 1px #F25C05" }}
-                  fontFamily="'Montserrat', sans-serif"
+                  Investment Amount
+                </Text>
+                <InputGroup size="lg" mb={3}>
+                  <InputLeftElement
+                    pointerEvents="none"
+                    color="#64748b"
+                    fontSize="1.1rem"
+                    fontWeight="700"
+                  >
+                    $
+                  </InputLeftElement>
+                  <Input
+                    type="number"
+                    placeholder="2,500"
+                    value={amount}
+                    onChange={(e) => { setAmount(e.target.value); setError(""); }}
+                    onKeyDown={(e) => { if (e.key === "Enter") handleSubmit(); }}
+                    borderColor="#e2e8f0"
+                    _hover={{ borderColor: "#cbd5e1" }}
+                    _focus={{ borderColor: "#F25C05", boxShadow: "0 0 0 1px #F25C05" }}
+                    fontFamily="'Montserrat', sans-serif"
+                    fontWeight="700"
+                    fontSize="1.25rem"
+                  />
+                </InputGroup>
+
+                {error && (
+                  <Text fontSize="0.85rem" color="#dc2626 !important" mb={3} textAlign="left">
+                    {error}
+                  </Text>
+                )}
+
+                <Button
+                  w="100%"
+                  bg="#F25C05"
+                  color="white"
+                  size="lg"
                   fontWeight="700"
-                  fontSize="1.25rem"
-                />
-              </InputGroup>
+                  _hover={{ bg: "#d94e04" }}
+                  onClick={handleSubmit}
+                  isLoading={submitting}
+                  loadingText="Submitting..."
+                >
+                  Submit Interest
+                </Button>
 
-              {error && (
-                <Text fontSize="0.85rem" color="#dc2626 !important" mb={3} textAlign="left">
-                  {error}
-                </Text>
-              )}
+                <Flex justify="center" gap={4} mt={4}>
+                  <Text fontSize="0.78rem" color="#94a3b8 !important">
+                    Minimum: $2,500
+                  </Text>
+                  <Text fontSize="0.78rem" color="#94a3b8 !important">
+                    No obligation
+                  </Text>
+                </Flex>
+              </Box>
 
-              <Button
-                w="100%"
-                bg="#F25C05"
-                color="white"
-                size="lg"
-                fontWeight="700"
-                _hover={{ bg: "#d94e04" }}
-                onClick={handleSubmit}
-                isLoading={submitting}
-                loadingText="Submitting..."
+              {/* Chat with Lou Card */}
+              <a
+                href="https://novavoice.innovaas.co"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none", display: "block" }}
               >
-                Submit Interest
-              </Button>
-
-              <Flex justify="center" gap={4} mt={4}>
-                <Text fontSize="0.78rem" color="#94a3b8 !important">
-                  Minimum: $2,500
-                </Text>
-                <Text fontSize="0.78rem" color="#94a3b8 !important">
-                  No obligation
-                </Text>
-              </Flex>
-            </Box>
+                <Flex
+                  className="bp-card"
+                  direction="column"
+                  align="center"
+                  justify="center"
+                  h="100%"
+                  _hover={{ boxShadow: "0 8px 24px rgba(242,92,5,0.15)", transform: "translateY(-3px)" }}
+                  transition="all 0.2s"
+                  cursor="pointer"
+                >
+                  <Box
+                    w="90px"
+                    h="90px"
+                    borderRadius="full"
+                    overflow="hidden"
+                    mb={4}
+                    border="3px solid #F25C05"
+                  >
+                    <img
+                      src="/lou.png"
+                      alt="Lou — NovaVoice AI Agent"
+                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    />
+                  </Box>
+                  <Text fontWeight="800" fontSize="1.05rem" color="#1e293b !important" mb={1}>
+                    Visit NovaVoice
+                  </Text>
+                  <Text fontWeight="700" fontSize="0.95rem" color="#F25C05 !important" mb={2}>
+                    Have a chat with Lou
+                  </Text>
+                  <Text fontSize="0.8rem" color="#64748b !important">
+                    novavoice.innovaas.co
+                  </Text>
+                </Flex>
+              </a>
+            </SimpleGrid>
           </>
         )}
       </MotionBox>
