@@ -39,6 +39,9 @@ export default function Header() {
   const navTextColor = useColorModeValue('#fff', '#f3f4f6');
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  // Hide header on bizplan pages — they have their own navigation
+  if (pathname.startsWith('/bizplan')) return null;
+
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/';
     if (href.startsWith('/#')) return pathname === '/';

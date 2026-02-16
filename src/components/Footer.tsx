@@ -1,11 +1,16 @@
 "use client";
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { FaEnvelope } from 'react-icons/fa';
 
 export default function Footer() {
+  const pathname = usePathname();
   const bodyTextColor = '#d1d5db';
   const secondaryTextColor = '#bcbcbc';
+
+  // Hide footer on bizplan pages — they have their own self-contained layout
+  if (pathname.startsWith('/bizplan')) return null;
 
   return (
     <footer style={{ background: '#181f2a', color: '#fff', marginTop: '3rem' }}>
