@@ -44,6 +44,58 @@ export default function CTASection() {
           Investment involves risk. Past performance is not indicative of future results.
         </Text>
       </MotionBox>
+
+      {/* Visit NovaVoice */}
+      <MotionBox
+        mt={16}
+        mx="auto"
+        maxW="500px"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.3, duration: 0.6 }}
+      >
+        <a
+          href="https://novavoice.innovaas.co"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ textDecoration: "none" }}
+        >
+          <Flex
+            direction="column"
+            align="center"
+            bg="rgba(255,255,255,0.1)"
+            border="1px solid rgba(255,255,255,0.2)"
+            borderRadius="16px"
+            px={8}
+            py={6}
+            _hover={{ bg: "rgba(255,255,255,0.18)", transform: "translateY(-2px)" }}
+            transition="all 0.2s"
+            cursor="pointer"
+          >
+            <Box
+              w="80px"
+              h="80px"
+              borderRadius="full"
+              overflow="hidden"
+              mb={4}
+              border="3px solid rgba(255,255,255,0.3)"
+            >
+              <img
+                src="/lou.png"
+                alt="Lou — NovaVoice AI Agent"
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            </Box>
+            <Text fontWeight="800" fontSize="1.1rem" color="white !important" mb={1}>
+              Visit NovaVoice and have a chat with Lou
+            </Text>
+            <Text fontSize="0.85rem" opacity={0.8} color="white !important">
+              novavoice.innovaas.co
+            </Text>
+          </Flex>
+        </a>
+      </MotionBox>
     </Box>
   );
 }
