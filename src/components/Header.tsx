@@ -12,9 +12,7 @@ import { FiSun, FiMoon, FiMenu } from "react-icons/fi";
 
 const navLinks = [
   { href: '/', label: 'Home' },
-  { href: '/use-cases/restaurant', label: 'Restaurants' },
-  { href: '/use-cases/home-services', label: 'Home Services' },
-  { href: '/use-cases/veterinarian', label: 'Veterinary' },
+  { href: '/#industries', label: 'Industries' },
   { href: '/#pricing', label: 'Pricing' },
   { href: '/#get-started', label: 'Get Started' },
 ];

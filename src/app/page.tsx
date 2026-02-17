@@ -408,7 +408,7 @@ export default function NovaVoicePage() {
         </Box>
 
         {/* Industries */}
-        <Box mb={16}>
+        <Box mb={16} id="industries">
           <Heading
             as="h2"
             size="lg"
@@ -417,7 +417,7 @@ export default function NovaVoicePage() {
             fontWeight={800}
             fontFamily="Montserrat, Arial, sans-serif"
           >
-            Built for Businesses That Live and Die by the Phone
+            Industries We Serve
           </Heading>
           <Text fontSize="lg" color={bodyTextColor} mb={6}>
             NovaVoice is designed for industries where every missed call has a direct cost.
@@ -427,23 +427,17 @@ export default function NovaVoicePage() {
               <Heading as="h3" size="md" mb={2} color="#F25C05" fontWeight={700} fontFamily="Montserrat, Arial, sans-serif">
                 Healthcare &amp; Dental
               </Heading>
-              <Text fontSize="md" color={bodyTextColor} mb={3}>
+              <Text fontSize="md" color={bodyTextColor}>
                 Schedule appointments, handle prescription refill inquiries, confirm insurance details, and send appointment reminders. 36% of healthcare consumers prefer voice calls over any other channel.
               </Text>
-              <Link href="/use-cases/veterinarian" style={{ color: '#F25C05', fontWeight: 700, fontSize: '0.9rem' }}>
-                See Case Study: Veterinary Clinic →
-              </Link>
             </Box>
             <Box bg={cardBg} p={6} borderRadius="lg" borderWidth="1px" borderColor={borderColor}>
               <Heading as="h3" size="md" mb={2} color="#F25C05" fontWeight={700} fontFamily="Montserrat, Arial, sans-serif">
                 Home Services
               </Heading>
-              <Text fontSize="md" color={bodyTextColor} mb={3}>
+              <Text fontSize="md" color={bodyTextColor}>
                 Plumbers, electricians, HVAC, and contractors miss 62% of inbound calls — at $1,200 lost per missed call. NovaVoice captures every lead and books service appointments on the spot.
               </Text>
-              <Link href="/use-cases/home-services" style={{ color: '#F25C05', fontWeight: 700, fontSize: '0.9rem' }}>
-                See Case Study: Roofing Company →
-              </Link>
             </Box>
             <Box bg={cardBg} p={6} borderRadius="lg" borderWidth="1px" borderColor={borderColor}>
               <Heading as="h3" size="md" mb={2} color="#F25C05" fontWeight={700} fontFamily="Montserrat, Arial, sans-serif">
@@ -473,14 +467,47 @@ export default function NovaVoicePage() {
               <Heading as="h3" size="md" mb={2} color="#F25C05" fontWeight={700} fontFamily="Montserrat, Arial, sans-serif">
                 Restaurants &amp; Hospitality
               </Heading>
-              <Text fontSize="md" color={bodyTextColor} mb={3}>
+              <Text fontSize="md" color={bodyTextColor}>
                 Handle reservations, answer menu questions, take catering inquiries, and manage event bookings. Restaurants lose up to $1,500/month from just five missed calls daily.
               </Text>
-              <Link href="/use-cases/restaurant" style={{ color: '#F25C05', fontWeight: 700, fontSize: '0.9rem' }}>
-                See Case Study: Italian Restaurant →
-              </Link>
             </Box>
           </SimpleGrid>
+
+          {/* Pilot CTA Banner */}
+          <Box
+            mt={8}
+            p={{ base: 6, md: 8 }}
+            bg="#F25C05"
+            borderRadius="xl"
+            textAlign="center"
+          >
+            <Heading
+              as="h3"
+              size="md"
+              mb={3}
+              color="white"
+              fontWeight={800}
+              fontFamily="Montserrat, Arial, sans-serif"
+            >
+              Be Our First Success Story
+            </Heading>
+            <Text fontSize="md" color="white" mb={5} maxW="600px" mx="auto">
+              We&apos;re onboarding a limited number of pilot partners. Get priority setup, hands-on support, and help us prove what NovaVoice can do for your industry.
+            </Text>
+            <Link href="#get-started">
+              <Button
+                size="lg"
+                bg="white"
+                color="#F25C05"
+                fontWeight={700}
+                fontFamily="Montserrat, Arial, sans-serif"
+                _hover={{ bg: "gray.100" }}
+                borderRadius="full"
+              >
+                Join the Pilot Program
+              </Button>
+            </Link>
+          </Box>
         </Box>
 
         {/* Pricing */}
