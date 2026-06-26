@@ -42,6 +42,60 @@ interface FormData {
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
+const PRICING_TIERS = [
+  {
+    name: "Essentials",
+    blurb: "For solo operators and family businesses that just need every call answered.",
+    monthly: "$299",
+    setup: "No setup fee",
+    featured: false,
+    cta: { label: "Get Started", href: "#get-started" },
+    features: [
+      "24/7 AI call answering",
+      "Answers FAQs about your services, hours & pricing",
+      "Message taking with instant SMS/email handoff",
+      "Calendar-link appointment booking",
+      "Call routing & escalation to your team",
+      "Real-time transcripts & call summaries",
+      "Generous fair-use minutes",
+    ],
+  },
+  {
+    name: "Professional",
+    blurb: "For established businesses ready to integrate one core system.",
+    monthly: "$639",
+    setup: "$5,000 one-time setup",
+    featured: true,
+    cta: { label: "Get Started", href: "#get-started" },
+    features: [
+      "Everything in Essentials, plus:",
+      "Custom AI agent trained on your business",
+      "Custom API integration into one core system (scheduling or CRM)",
+      "Books appointments directly into your calendar",
+      "Lead capture & CRM sync",
+      "Intelligent escalation with full context",
+      "Unlimited calls",
+      "Ongoing updates & optimization",
+    ],
+  },
+  {
+    name: "Business",
+    blurb: "For multi-system or multi-location operations that run on connected tools.",
+    monthly: "From $1,200",
+    setup: "From $7,500 setup — scoped to your stack",
+    featured: false,
+    cta: { label: "Talk to Sales", href: "#get-started" },
+    features: [
+      "Everything in Professional, plus:",
+      "Integration across multiple systems (scheduling + inventory + CRM)",
+      "Multi-location & multi-number support",
+      "Custom workflows & routing logic",
+      "Priority support with dedicated optimization",
+      "Advanced analytics & reporting",
+    ],
+  },
+];
+
 export default function NovaVoicePage() {
   const headingColor = useColorModeValue("#181f2a", "#fff");
   const bodyTextColor = useColorModeValue("#222", "#d1d5db");
@@ -518,98 +572,116 @@ export default function NovaVoicePage() {
             fontFamily="Montserrat, Arial, sans-serif"
             textAlign="center"
           >
-            Simple, Transparent Pricing
+            Pricing That Scales With Your Business
           </Heading>
-          <Text fontSize="lg" color={bodyTextColor} mb={8} textAlign="center" maxW="600px" mx="auto">
-            No per-minute charges. No hidden fees. One setup cost, one monthly price — that&apos;s it.
+          <Text fontSize="lg" color={bodyTextColor} mb={8} textAlign="center" maxW="640px" mx="auto">
+            From simple call answering to deep system integration — choose the depth your business needs. No per-minute charges, no hidden fees.
           </Text>
 
-          <Box
-            maxW="520px"
-            mx="auto"
-            bg={cardBg}
-            borderRadius="xl"
-            boxShadow="xl"
-            borderWidth="2px"
-            borderColor="#F25C05"
-            overflow="hidden"
-          >
-            <Box bg="#F25C05" py={4} px={8} textAlign="center">
-              <Heading as="h3" size="lg" color="#fff" fontWeight={800} fontFamily="Montserrat, Arial, sans-serif">
-                NovaVoice AI Phone Agent
-              </Heading>
-            </Box>
-            <Box p={{ base: 6, md: 8 }}>
-              <Flex direction={{ base: "column", sm: "row" }} gap={6} mb={6}>
-                <Box flex={1} textAlign="center" p={4} bg={problemBg} borderRadius="lg">
-                  <Text fontSize="sm" color={mutedText} mb={1} fontWeight={600}>One-Time Setup</Text>
-                  <Text fontSize="3xl" fontWeight={900} color={headingColor} fontFamily="Montserrat, Arial, sans-serif">
-                    $5,000
+          <SimpleGrid columns={{ base: 1, lg: 3 }} spacing={6} alignItems="stretch" maxW="1100px" mx="auto">
+            {PRICING_TIERS.map((tier) => (
+              <Flex
+                key={tier.name}
+                direction="column"
+                bg={cardBg}
+                borderRadius="xl"
+                boxShadow={tier.featured ? "2xl" : "md"}
+                borderWidth={tier.featured ? "2px" : "1px"}
+                borderColor={tier.featured ? "#F25C05" : borderColor}
+                overflow="hidden"
+                position="relative"
+                transform={{ lg: tier.featured ? "scale(1.04)" : "none" }}
+                zIndex={tier.featured ? 1 : 0}
+              >
+                {tier.featured && (
+                  <Box bg="#F25C05" py={1.5} textAlign="center">
+                    <Text fontSize="xs" fontWeight={800} color="#fff" letterSpacing="0.1em" textTransform="uppercase">
+                      Most Popular
+                    </Text>
+                  </Box>
+                )}
+                <Box p={{ base: 6, md: 7 }} pb={3}>
+                  <Heading as="h3" size="md" color={headingColor} fontWeight={800} fontFamily="Montserrat, Arial, sans-serif" mb={2}>
+                    {tier.name}
+                  </Heading>
+                  <Text fontSize="sm" color={mutedText} mb={4} minH={{ lg: "60px" }}>
+                    {tier.blurb}
                   </Text>
-                  <Text fontSize="xs" color={mutedText}>custom agent build</Text>
+                  <Flex align="baseline" gap={1}>
+                    <Text fontSize="4xl" fontWeight={900} color={headingColor} fontFamily="Montserrat, Arial, sans-serif" lineHeight="1">
+                      {tier.monthly}
+                    </Text>
+                    <Text fontSize="sm" color={mutedText}>/mo</Text>
+                  </Flex>
+                  <Text fontSize="sm" color={mutedText} mt={1}>{tier.setup}</Text>
                 </Box>
-                <Box flex={1} textAlign="center" p={4} bg={problemBg} borderRadius="lg">
-                  <Text fontSize="sm" color={mutedText} mb={1} fontWeight={600}>Monthly</Text>
-                  <Text fontSize="3xl" fontWeight={900} color={headingColor} fontFamily="Montserrat, Arial, sans-serif">
-                    $639
-                  </Text>
-                  <Text fontSize="xs" color={mutedText}>per month</Text>
+                <Box px={{ base: 6, md: 7 }} flex="1">
+                  <List spacing={2.5} color={bodyTextColor}>
+                    {tier.features.map((f, i) => (
+                      <ListItem key={i} fontSize="sm" fontWeight={f.endsWith(":") ? 700 : 400}>
+                        {!f.endsWith(":") && <ListIcon as={CheckCircleIcon} color="#F25C05" />}
+                        {f}
+                      </ListItem>
+                    ))}
+                  </List>
+                </Box>
+                <Box p={{ base: 6, md: 7 }} pt={6}>
+                  <Button
+                    as="a"
+                    href={tier.cta.href}
+                    bg={tier.featured ? "#F25C05" : "transparent"}
+                    color={tier.featured ? "#fff" : "#F25C05"}
+                    border={tier.featured ? "none" : "2px solid #F25C05"}
+                    _hover={{ bg: tier.featured ? "#d94e04" : "#F25C05", color: "#fff" }}
+                    fontWeight={700}
+                    borderRadius="6px"
+                    size="lg"
+                    w="100%"
+                    fontSize="md"
+                  >
+                    {tier.cta.label}
+                  </Button>
                 </Box>
               </Flex>
+            ))}
+          </SimpleGrid>
 
-              <List spacing={3} color={bodyTextColor} pl={2} mb={6}>
-                <ListItem fontSize="sm">
-                  <ListIcon as={CheckCircleIcon} color="#F25C05" />
-                  Custom AI agent trained on your business
-                </ListItem>
-                <ListItem fontSize="sm">
-                  <ListIcon as={CheckCircleIcon} color="#F25C05" />
-                  24/7 call answering — unlimited calls
-                </ListItem>
-                <ListItem fontSize="sm">
-                  <ListIcon as={CheckCircleIcon} color="#F25C05" />
-                  Appointment booking &amp; calendar integration
-                </ListItem>
-                <ListItem fontSize="sm">
-                  <ListIcon as={CheckCircleIcon} color="#F25C05" />
-                  Real-time transcripts &amp; analytics dashboard
-                </ListItem>
-                <ListItem fontSize="sm">
-                  <ListIcon as={CheckCircleIcon} color="#F25C05" />
-                  Lead capture &amp; CRM integration
-                </ListItem>
-                <ListItem fontSize="sm">
-                  <ListIcon as={CheckCircleIcon} color="#F25C05" />
-                  Intelligent escalation to your team
-                </ListItem>
-                <ListItem fontSize="sm">
-                  <ListIcon as={CheckCircleIcon} color="#F25C05" />
-                  Ongoing updates &amp; optimization
-                </ListItem>
-              </List>
-
-              <Box bg={problemBg} p={4} borderRadius="lg" mb={6}>
-                <Text fontSize="sm" color={bodyTextColor} textAlign="center">
-                  <b>That&apos;s 85-95% less</b> than a full-time receptionist — with 24/7 coverage, zero sick days, and every call answered.
+          {/* Enterprise + reassurance */}
+          <Box maxW="1100px" mx="auto" mt={8}>
+            <Flex
+              direction={{ base: "column", md: "row" }}
+              align="center"
+              justify="space-between"
+              gap={4}
+              bg={problemBg}
+              borderRadius="lg"
+              p={6}
+            >
+              <Box>
+                <Text fontWeight={700} color={headingColor} fontFamily="Montserrat, Arial, sans-serif">
+                  Running a franchise or chain?
+                </Text>
+                <Text fontSize="sm" color={bodyTextColor}>
+                  We build bespoke, multi-location deployments with SLAs and dedicated support.
                 </Text>
               </Box>
-
               <Button
                 as="a"
                 href="#get-started"
-                bg="#F25C05"
-                color="#fff"
-                _hover={{ bg: "#d94e04" }}
+                variant="outline"
+                borderColor="#F25C05"
+                color="#F25C05"
+                _hover={{ bg: "#F25C05", color: "#fff" }}
                 fontWeight={700}
                 borderRadius="6px"
-                size="lg"
-                w="100%"
-                py={7}
-                fontSize="lg"
+                flexShrink={0}
               >
-                Get Started
+                Get a Custom Quote
               </Button>
-            </Box>
+            </Flex>
+            <Text fontSize="sm" color={mutedText} textAlign="center" mt={6}>
+              <b>Still 85–95% less</b> than a full-time receptionist — with 24/7 coverage, zero sick days, and every call answered.
+            </Text>
           </Box>
         </Box>
 
