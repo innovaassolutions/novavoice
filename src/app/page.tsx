@@ -301,7 +301,7 @@ export default function NovaVoicePage() {
   };
 
   const inputClass =
-    "w-full rounded-md border border-line bg-ink-950 px-4 py-3 text-ink-100 placeholder-ink-600 outline-none transition-colors focus:border-signal-500 focus:ring-1 focus:ring-signal-500";
+    "w-full rounded-md border border-line bg-ink-950 px-4 py-3 text-ink-100 placeholder-ink-500 outline-none transition-colors focus:border-signal-500 focus:ring-1 focus:ring-signal-500";
 
   return (
     <div className="nv-landing">
@@ -402,7 +402,7 @@ export default function NovaVoicePage() {
               <p className="nv-display text-4xl text-signal-500 md:text-5xl">
                 {s.v}
               </p>
-              <p className="mt-2 text-sm leading-snug text-ink-400">{s.label}</p>
+              <p className="mt-2 text-sm leading-snug text-ink-300">{s.label}</p>
             </div>
           ))}
         </div>
@@ -424,7 +424,7 @@ export default function NovaVoicePage() {
                 calendar, answers questions about your services and pricing, and
                 routes complex issues to the right person.
               </p>
-              <p className="mt-4 text-lg leading-relaxed text-ink-400">
+              <p className="mt-4 text-lg leading-relaxed text-ink-300">
                 Unlike robotic IVR menus or generic chatbots, it holds natural
                 conversations. Callers get real answers — not &quot;press 1 for
                 sales.&quot; Whether it&apos;s 2 PM on a Tuesday or 2 AM on a Sunday.
@@ -520,7 +520,7 @@ export default function NovaVoicePage() {
             <div className="overflow-hidden rounded-xl border border-line shadow-[0_0_60px_rgba(0,0,0,0.5)]">
               <NovaVoiceCallFlow />
             </div>
-            <p className="mt-4 text-center text-xs text-ink-500">
+            <p className="mt-4 text-center text-xs text-ink-400">
               Live call transcript: real-time intent detection, caller history,
               and automated appointment booking.
             </p>
@@ -581,7 +581,7 @@ export default function NovaVoicePage() {
             <div className="overflow-hidden rounded-xl border border-line shadow-[0_0_60px_rgba(0,0,0,0.5)]">
               <NovaVoiceAnalytics />
             </div>
-            <p className="mt-4 text-center text-xs text-ink-500">
+            <p className="mt-4 text-center text-xs text-ink-400">
               Monthly analytics: call reasons, peak hours, sentiment, and cost
               savings.
             </p>
@@ -648,34 +648,6 @@ export default function NovaVoicePage() {
               </div>
             ))}
           </div>
-
-          {/* Pilot banner */}
-          <div className="reveal-pending mt-12">
-            <div className="relative overflow-hidden rounded-xl border border-signal-500/40 bg-ink-900 px-6 py-12 text-center shadow-[0_0_70px_rgba(242,92,5,0.12)]">
-              <div
-                className="pointer-events-none absolute inset-0 opacity-60"
-                style={{
-                  background:
-                    "radial-gradient(60% 120% at 50% 0%, rgba(242,92,5,0.18), transparent 70%)",
-                }}
-              />
-              <div className="relative">
-                <h3 className="font-display text-2xl font-bold text-ink-50">
-                  Be our first success story
-                </h3>
-                <p className="mx-auto mt-3 max-w-xl text-ink-300">
-                  We&apos;re onboarding a limited number of pilot partners. Get
-                  priority setup, hands-on support, and help us prove what
-                  NovaVoice can do for your industry.
-                </p>
-                <div className="mt-7 flex justify-center">
-                  <MagneticLink href="#get-started" variant="solid">
-                    Join the Pilot Program
-                  </MagneticLink>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -714,18 +686,19 @@ export default function NovaVoicePage() {
                   <h3 className="font-display text-xl font-bold text-ink-50">
                     {tier.name}
                   </h3>
-                  <p className="mt-2 min-h-[60px] text-sm text-ink-400">
+                  <p className="mt-2 min-h-[60px] text-sm text-ink-300">
                     {tier.blurb}
                   </p>
                   <div className="flex items-baseline gap-1">
                     <span className="nv-display text-4xl text-ink-50">
                       {tier.monthly}
                     </span>
-                    <span className="text-sm text-ink-400">/mo</span>
+                    <span className="text-sm text-ink-300">/mo</span>
                   </div>
-                  <p className="mt-1 text-sm text-ink-400">{tier.setup}</p>
+                  <p className="mt-1 text-sm text-ink-300">{tier.setup}</p>
                 </div>
-                <ul className="flex-1 space-y-2.5 px-7">
+                <div className="flex-1 px-7">
+                  <ul className="flex flex-col gap-2.5">
                   {tier.features.map((f) =>
                     f.endsWith(":") ? (
                       <li
@@ -737,7 +710,7 @@ export default function NovaVoicePage() {
                     ) : (
                       <li
                         key={f}
-                        className="flex gap-2 text-sm text-ink-300"
+                        className="flex gap-2.5 text-sm text-ink-300"
                       >
                         <svg
                           className="mt-0.5 shrink-0 text-signal-500"
@@ -758,7 +731,8 @@ export default function NovaVoicePage() {
                       </li>
                     )
                   )}
-                </ul>
+                  </ul>
+                </div>
                 <div className="p-7 pt-6">
                   <Link
                     href={tier.cta.href}
@@ -782,7 +756,7 @@ export default function NovaVoicePage() {
                 <p className="font-display font-semibold text-ink-50">
                   Running a franchise or chain?
                 </p>
-                <p className="text-sm text-ink-400">
+                <p className="text-sm text-ink-300">
                   We build bespoke, multi-location deployments with SLAs and
                   dedicated support.
                 </p>
@@ -794,7 +768,7 @@ export default function NovaVoicePage() {
                 Get a Custom Quote
               </Link>
             </div>
-            <p className="mt-6 text-center text-sm text-ink-400">
+            <p className="mt-6 text-center text-sm text-ink-300">
               <span className="font-semibold text-ink-200">
                 Still 85–95% less
               </span>{" "}
@@ -838,7 +812,7 @@ export default function NovaVoicePage() {
                 <h3 className="mt-4 font-display text-2xl font-bold text-ink-50">
                   Thanks! We&apos;ll be in touch shortly.
                 </h3>
-                <p className="mt-2 max-w-md text-ink-400">
+                <p className="mt-2 max-w-md text-ink-300">
                   We&apos;ve received your inquiry and will reach out within one
                   business day to discuss your AI phone agent.
                 </p>
@@ -953,7 +927,7 @@ export default function NovaVoicePage() {
                 >
                   {status === "submitting" ? "Sending…" : "Get your AI phone agent"}
                 </button>
-                <p className="text-center text-xs text-ink-500">
+                <p className="text-center text-xs text-ink-400">
                   We respect your privacy and will never share your information.
                 </p>
               </form>
