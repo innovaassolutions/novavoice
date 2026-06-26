@@ -13,7 +13,7 @@ export default function Footer() {
   if (pathname.startsWith('/bizplan')) return null;
 
   return (
-    <footer style={{ background: '#181f2a', color: '#fff', marginTop: '3rem' }}>
+    <footer style={{ background: '#05080e', color: '#fff', marginTop: 0, borderTop: '1px solid rgba(255,255,255,0.08)' }}>
       <div style={{
         display: 'flex',
         justifyContent: 'space-between',
@@ -56,7 +56,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div style={{ background: '#131722', color: secondaryTextColor, textAlign: 'center', padding: '0.75rem 0', fontSize: '1rem' }}>
+      <div style={{ background: '#0a0f18', color: secondaryTextColor, textAlign: 'center', padding: '0.75rem 0', fontSize: '1rem' }}>
         Copyright © Innovaas Solutions Pte. Ltd. 2026
       </div>
     </footer>

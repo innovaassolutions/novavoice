@@ -47,7 +47,7 @@ export default function Header() {
   };
 
   return (
-    <Box as="nav" bg="#181f2a" px={{ base: 2, md: 8 }} py={0} position="sticky" top={0} zIndex={1000} borderBottom="1px solid #222">
+    <Box as="nav" bg="#05080e" px={{ base: 2, md: 8 }} py={0} position="sticky" top={0} zIndex={1000} borderBottom="1px solid rgba(255,255,255,0.08)">
       <Flex h={{ base: "56px", md: "72px" }} align="center" justify="space-between">
         {/* Logo */}
         <Link href="/" style={{ display: "flex", alignItems: "center" }}>
@@ -108,7 +108,7 @@ export default function Header() {
       {/* Mobile Drawer */}
       <Drawer placement="right" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
-        <DrawerContent bg="#181f2a">
+        <DrawerContent bg="#05080e">
           <DrawerCloseButton color="#fff" />
           <DrawerBody>
             <VStack spacing={4} mt={12}>

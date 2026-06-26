@@ -1,6 +1,6 @@
 import ClientLayout from "../components/ClientLayout";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Space_Grotesk, JetBrains_Mono, Anton } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import Header from "../components/Header";
@@ -10,6 +10,24 @@ import ChakraProviders from "../components/ChakraProviders";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+});
+
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+  weight: ["400", "500"],
+});
+
+const anton = Anton({
+  variable: "--font-anton",
+  subsets: ["latin"],
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -118,7 +136,7 @@ export default function RootLayout({
         data-website-id="970d2eb8-3a71-4ec5-9221-be48bbc00058"
         strategy="afterInteractive"
       />
-      <body className={`${inter.variable} antialiased`}>
+      <body className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${anton.variable} antialiased`}>
         <ChakraProviders>
           <Header />
           <ClientLayout>
